@@ -1,0 +1,6 @@
+name: SmedalisCore
+authors: [DevKrazy]
+description: Fonctions essentielles de Smedalis
+main: com.devkrazy.smedaliscore.SmedalisCore
+version: 0.1
+api-version: 1.16

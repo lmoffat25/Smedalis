@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>SmedalisCore</artifactId>
+    <artifactId>CitiesOfFreedom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -35,5 +35,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 </project>

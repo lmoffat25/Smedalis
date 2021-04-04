@@ -17,6 +17,8 @@ public class CoFPlayersManager {
     private static CoFPlayersManager instance = new CoFPlayersManager();
     private HashMap<UUID, CoFPlayer> cofPlayers;
 
+    // TODO: gestion des reloads du serveur
+
     /**
      * Singleton constructor
      */

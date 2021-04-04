@@ -1,0 +1,11 @@
+name: CitiesOfFreedom
+authors: [DevKrazy]
+description: Jeu CitiesOfFreedom du network Smedalis.
+main: com.devkrazy.citiesoffreedom.CitiesOfFreedom
+version: 0.1
+api-version: 1.16
+commands:
+  team:
+    description: Commande de gestion des teams.
+    usage: /team
+    permission: cof.team

@@ -7,7 +7,8 @@
 
 package com.devkrazy.citiesoffreedom.player;
 
-import com.devkrazy.citiesoffreedom.game.mission.Job;
+import com.devkrazy.citiesoffreedom.game.Job;
+import com.devkrazy.citiesoffreedom.game.Team;
 import com.devkrazy.citiesoffreedom.game.mission.Mission;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,10 +20,10 @@ import java.util.List;
 public class CoFPlayer {
 
     private Job job;
-    private List<Mission> missions;
+    private final List<Mission> missions;
     private Chest chest;
     private Location spawnPoint;
-    // team ?
+    private Team team;
 
 
     public CoFPlayer() {
@@ -62,6 +63,14 @@ public class CoFPlayer {
         this.spawnPoint = spawnPoint;
     }
 
+    public Team getTeam() {
+        return this.team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
 
     /*
     Methods
@@ -95,5 +104,19 @@ public class CoFPlayer {
      */
     public boolean hasChest() {
         return this.chest != null;
+    }
+
+    /**
+     * Removes the current CoFPlayer's team.
+     */
+    public void removeTeam() {
+        this.team = null;
+    }
+
+    /**
+     * @return true if the CoFPlayer has a team; false otherwise
+     */
+    public boolean hasTeam() {
+        return this.team != null;
     }
 }

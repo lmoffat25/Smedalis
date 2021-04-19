@@ -31,6 +31,15 @@ public class ItemBuilder {
     }
 
     /**
+     * Constructs an ItemBuilder with a material and a name
+     * @param material the material
+     * @param amount the name that will be given to the item
+     */
+    public ItemBuilder(Material material, int amount) {
+        this.itemStack = new ItemStack(material, amount);
+    }
+
+    /**
      * @return the ItemStack's ItemMeta
      */
     private ItemMeta getMeta() {

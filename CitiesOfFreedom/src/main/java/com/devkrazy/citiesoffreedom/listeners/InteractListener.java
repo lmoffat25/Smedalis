@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This InteractListeners.java file is a part of the Smedalis project.
+ * This InteractListener.java file is a part of the Smedalis project.
  * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
  *
  */
@@ -15,7 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class InteractListeners implements Listener {
+public class InteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {

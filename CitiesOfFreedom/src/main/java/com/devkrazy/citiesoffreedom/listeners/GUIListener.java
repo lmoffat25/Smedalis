@@ -20,7 +20,7 @@ import org.bukkit.event.inventory.InventoryType;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class GUIListeners implements Listener {
+public class GUIListener implements Listener {
 
     public static HashMap<UUID, GUIMenu> menuMap = new HashMap<>();
 

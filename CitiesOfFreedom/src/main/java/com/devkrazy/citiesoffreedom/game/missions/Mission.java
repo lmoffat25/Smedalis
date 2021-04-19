@@ -1,0 +1,86 @@
+/*
+ * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
+ * This Mission.java file is a part of the Smedalis project.
+ * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
+ *
+ */
+
+package com.devkrazy.citiesoffreedom.game.missions;
+
+import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
+import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
+import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
+abstract public class Mission {
+
+    private String name;
+    private boolean completed;
+    private Player player;
+    private int xpReward;
+    private int emeraldsReward;
+    private MissionType missionType;
+
+
+    protected Mission(String name, Player player, int xpReward, int emeraldsReward, MissionType missionType) {
+        this.name = name;
+        this.player = player;
+        this.completed = false;
+        this.xpReward = xpReward;
+        this.emeraldsReward = emeraldsReward;
+        this.missionType = missionType;
+    }
+
+
+    /*
+    Getters and setters
+     */
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getXpReward() {
+        return xpReward;
+    }
+
+    public int getEmeraldsReward() {
+        return emeraldsReward;
+    }
+
+    public MissionType getType() {
+        return missionType;
+    }
+
+
+    /*
+    Methods
+     */
+
+    /**
+     * Gives the owner's mission the experience and emerald reward.
+     */
+    protected void giveReward() {
+        this.completed = true;
+        ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
+        this.player.getInventory().addItem(builder.build());
+        // TODO: check if player's inventory is not full
+        this.player.giveExp(this.xpReward);
+        this.player.sendMessage(Component.text(ChatColor.GREEN + "" + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
+    }
+
+    /**
+     * @return a copy of the current Mission
+     */
+    abstract Mission copy();
+}

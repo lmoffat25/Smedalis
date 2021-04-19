@@ -8,10 +8,10 @@
 package com.devkrazy.citiesoffreedom;
 
 import com.devkrazy.citiesoffreedom.commands.TeamCommand;
-import com.devkrazy.citiesoffreedom.game.Team;
-import com.devkrazy.citiesoffreedom.listeners.ConnectionListeners;
-import com.devkrazy.citiesoffreedom.listeners.GUIListeners;
-import com.devkrazy.citiesoffreedom.listeners.InteractListeners;
+import com.devkrazy.citiesoffreedom.listeners.ConnectionListener;
+import com.devkrazy.citiesoffreedom.listeners.GUIListener;
+import com.devkrazy.citiesoffreedom.listeners.InteractListener;
+import com.devkrazy.citiesoffreedom.listeners.MissionsListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,9 +24,10 @@ public class CitiesOfFreedom extends JavaPlugin {
         instance = this;
 
         // register events
-        Bukkit.getServer().getPluginManager().registerEvents(new ConnectionListeners(), instance);
-        Bukkit.getServer().getPluginManager().registerEvents(new GUIListeners(), instance);
-        Bukkit.getServer().getPluginManager().registerEvents(new InteractListeners(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new ConnectionListener(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new GUIListener(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new InteractListener(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new MissionsListener(), instance);
 
 
         // register commands

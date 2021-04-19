@@ -1,11 +1,14 @@
 /*
  * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This CountMission.java file is a part of the Smedalis project.
+ * This MissionType.java file is a part of the Smedalis project.
  * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
  *
  */
 
-package com.devkrazy.citiesoffreedom.game.mission;
+package com.devkrazy.citiesoffreedom.game.missions;
 
-public class CountMission extends Mission {
+public enum MissionType {
+
+    BREAK_STONE_BLOCK();
+
 }

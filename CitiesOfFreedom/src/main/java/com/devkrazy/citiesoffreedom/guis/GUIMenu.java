@@ -8,7 +8,7 @@
 package com.devkrazy.citiesoffreedom.guis;
 
 import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
-import com.devkrazy.citiesoffreedom.listeners.GUIListeners;
+import com.devkrazy.citiesoffreedom.listeners.GUIListener;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
@@ -43,7 +43,7 @@ public class GUIMenu {
             @Override
             public void run() {
                 p.openInventory(inventory);
-                GUIListeners.menuMap.put(p.getUniqueId(), GUIMenu.this);
+                GUIListener.menuMap.put(p.getUniqueId(), GUIMenu.this);
             }
         }.runTaskLater(CitiesOfFreedom.getInstance(), 1);
     }

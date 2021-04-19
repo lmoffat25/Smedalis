@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.game;
 
-import com.devkrazy.citiesoffreedom.game.mission.Mission;
+import com.devkrazy.citiesoffreedom.game.missions.Mission;
 import org.bukkit.Material;
 
 import java.util.ArrayList;

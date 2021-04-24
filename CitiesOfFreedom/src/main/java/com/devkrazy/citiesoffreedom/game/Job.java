@@ -30,6 +30,7 @@ public enum Job {
         this.name = name;
         this.guiMaterial = guiMaterial;
         this.missions = new ArrayList<>();
+
     }
 
     /*

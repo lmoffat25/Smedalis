@@ -1,0 +1,52 @@
+/*
+ * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
+ * This MissionsGUI.java file is a part of the Smedalis project.
+ * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
+ *
+ */
+
+package com.devkrazy.citiesoffreedom.guis;
+
+import com.devkrazy.citiesoffreedom.game.missions.Mission;
+import com.devkrazy.citiesoffreedom.player.CoFPlayer;
+import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.entity.Player;
+
+public class MissionsGUI {
+
+    private static MissionsGUI instance = new MissionsGUI();
+
+    /*
+    Getters
+     */
+
+    /**
+     * @return the TeamSelectionGUI's instance
+     */
+    public static MissionsGUI getInstance() {
+        return instance;
+    }
+
+
+     /*
+    Methods
+     */
+
+    /**
+     * Opens the team selection GUI to the given player.
+     * @param player the player
+     */
+    public void open(Player player) {
+        GUIMenu menu = new GUIMenu(ChatColor.of("#33914c") + "Vos missions", 3);
+        CoFPlayersManager manager = CoFPlayersManager.getInstance();
+        CoFPlayer cofPlayer = manager.getCoFPlayer(player);
+
+        for (Mission mission : cofPlayer.getMissions()) {
+            menu.addButton(new GUIButton(mission.getGUIItem()));
+        }
+
+        menu.pack();
+        menu.open(player);
+    }
+}

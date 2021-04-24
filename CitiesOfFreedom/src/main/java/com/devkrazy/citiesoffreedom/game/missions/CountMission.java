@@ -7,17 +7,20 @@
 
 package com.devkrazy.citiesoffreedom.game.missions;
 
+import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class CountMission extends Mission {
 
     private int goal;
     private int counter;
 
-    public CountMission(String name, Player player, int xpReward, int emeraldsReward, int goal, MissionType missionType) {
-        super(name, player, xpReward, emeraldsReward, missionType);
+    public CountMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionType missionType) {
+        super(name, player, guiMaterial, xpReward, emeraldsReward, missionType);
         this.goal = goal;
         this.counter = 0;
     }
@@ -53,10 +56,11 @@ public class CountMission extends Mission {
      * Increments the mission counter by a given value. If the counter reaches the mission goal,
      * then the player is rewarded with the mission reward.
      * Does nothing if the counter already reached the mission goal.
-     * @param count the value to increment the counter with
+     * @param count the value to increment the counter with (must be strictly positive)
      */
     public void incrementCounterOf(int count) {
         if (this.isCompleted()) return;
+        if (count <= 0) return;
 
         int increment = this.counter + count < this.goal ? count  : this.goal - this.counter;
         this.counter += increment;
@@ -72,9 +76,20 @@ public class CountMission extends Mission {
      */
     @Override
     public CountMission copy() {
-        CountMission newMission = new CountMission(this.getName(), this.getPlayer(), this.getXpReward(),
-                this.getEmeraldsReward(), this.getGoal(), this.getType());
+        CountMission newMission = new CountMission(this.getName(), this.getPlayer(), this.getGuiMaterial(),
+                this.getXpReward(), this.getEmeraldsReward(), this.getGoal(), this.getType());
         newMission.counter = this.counter;
         return newMission;
+    }
+
+    /**
+     * @return an itemstack to display the CountMission's status in a GUI
+     */
+    @Override
+    public ItemStack getGUIItem() {
+        ItemBuilder builder = new ItemBuilder(this.getGuiMaterial(), this.getName());
+        String completed = this.isCompleted() ? ChatColor.GREEN + "Mission terminée" : ChatColor.RED + "A terminer";
+        builder.setLore(ChatColor.GRAY + "Avancement : " + ChatColor.YELLOW + this.counter + "/" + this.goal, completed);
+        return builder.build();
     }
 }

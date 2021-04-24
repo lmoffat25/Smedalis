@@ -9,3 +9,7 @@ commands:
     description: Commande de gestion des teams.
     usage: /team
     permission: cof.team
+  missions:
+    description: Commande d'affichage des missions.
+    usage: /missions
+    permission: cof.missions

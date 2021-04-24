@@ -67,7 +67,7 @@ public class TeamSelectionGUI {
                 cofPlayer.setTeam(Team.BLUE);
                 player.closeInventory();
                 player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi l'équipe " +
-                        ChatColor.BLUE + ChatColor.BOLD + "bleue" + ChatColor.GRAY + "."));
+                        ChatColor.BLUE + "bleue" + ChatColor.GRAY + "."));
             }
         });
 
@@ -77,7 +77,7 @@ public class TeamSelectionGUI {
                 cofPlayer.setTeam(Team.RED);
                 player.closeInventory();
                 player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi l'équipe " +
-                        ChatColor.RED + ChatColor.BOLD + "rouge" + ChatColor.GRAY + "."));
+                        ChatColor.RED + "rouge" + ChatColor.GRAY + "."));
             }
         });
 
@@ -87,7 +87,7 @@ public class TeamSelectionGUI {
                 cofPlayer.setTeam(Team.PURPLE);
                 player.closeInventory();
                 player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi l'équipe " +
-                        ChatColor.DARK_PURPLE + ChatColor.BOLD + "violette" + ChatColor.GRAY + "."));
+                        ChatColor.DARK_PURPLE + "violette" + ChatColor.GRAY + "."));
             }
         });
         menu.pack();

@@ -7,5 +7,29 @@
 
 package com.devkrazy.citiesoffreedom.game.missions;
 
-public class ListMission {
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+
+public class ListMission extends Mission {
+
+    private ArrayList<Object> missionItems;
+
+    public ListMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionType missionType) {
+        super(name, player, guiMaterial, xpReward, emeraldsReward, missionType);
+        this.missionItems = new ArrayList<>();
+    }
+
+
+    @Override
+    public Mission copy() {
+        return null;
+    }
+
+    @Override
+    public ItemStack getGUIItem() {
+        return null;
+    }
 }

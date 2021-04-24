@@ -7,11 +7,8 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.game.missions.CountMission;
-import com.devkrazy.citiesoffreedom.game.missions.MissionType;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,12 +21,6 @@ public class MissionsListener implements Listener {
         Player player = event.getPlayer();
         CoFPlayersManager manager = CoFPlayersManager.getInstance();
         CoFPlayer cofPlayer = manager.getCoFPlayer(player);
-
-        if (event.getBlock().getType() == Material.STONE) {
-            if (cofPlayer.hasMission(MissionType.BREAK_STONE_BLOCK)) {
-                CountMission stoneMission = (CountMission) cofPlayer.getMission(MissionType.BREAK_STONE_BLOCK);
-                stoneMission.incrementCounter();
-            }
-        }
+        cofPlayer.processEvent(event);
     }
 }

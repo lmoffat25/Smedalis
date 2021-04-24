@@ -10,10 +10,10 @@ package com.devkrazy.citiesoffreedom.player;
 import com.devkrazy.citiesoffreedom.game.Job;
 import com.devkrazy.citiesoffreedom.game.Team;
 import com.devkrazy.citiesoffreedom.game.missions.Mission;
-import com.devkrazy.citiesoffreedom.game.missions.MissionType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Chest;
+import org.bukkit.event.Event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +90,7 @@ public class CoFPlayer {
      * @param mission the mission to add
      */
     public void addMission(Mission mission) {
-        if (this.hasMission(mission.getType()) ==  false) {
-            this.missions.add(mission);
-        }
-        Bukkit.getLogger().warning("Tried to add a mission of type " + mission.getType() + " to a CoFPlayer" +
-                "who already has one.");
+        this.missions.add(mission);
     }
 
     /**
@@ -126,10 +122,17 @@ public class CoFPlayer {
         return this.team != null;
     }
 
-    /**
+
+    public void processEvent(Event event) {
+        for (Mission mission : this.missions) {
+            mission.processEvent(event);
+        }
+    }
+
+/*    *//**
      * @param missionType the mission type
      * @return true if the player has a mission of the given mission type; false otherwise
-     */
+     *//*
     public boolean hasMission(MissionType missionType) {
         for (Mission mission : this.missions) {
             if (mission.getType() == missionType) return true;
@@ -137,14 +140,14 @@ public class CoFPlayer {
         return false;
     }
 
-    /**
+    *//**
      * @param missionType the type of the mission
      * @return the Mission of the given type if the CoFPlayer has one of the given type; null otherwise
-     */
+     *//*
     public Mission getMission(MissionType missionType) {
         for (Mission mission : this.missions) {
             if (mission.getType() == missionType) return mission;
         }
         return null;
-    }
+    }*/
 }

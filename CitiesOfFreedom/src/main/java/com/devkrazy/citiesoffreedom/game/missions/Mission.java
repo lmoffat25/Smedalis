@@ -12,6 +12,7 @@ import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 abstract public class Mission {
@@ -21,18 +22,16 @@ abstract public class Mission {
     private Material guiMaterial;
     private int xpReward;
     private int emeraldsReward;
-    private MissionType missionType;
     private boolean completed;
 
 
 
-    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionType missionType) {
+    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward) {
         this.name = name;
         this.player = player;
         this.guiMaterial = guiMaterial;
         this.xpReward = xpReward;
         this.emeraldsReward = emeraldsReward;
-        this.missionType = missionType;
         this.completed = false;
     }
 
@@ -65,9 +64,6 @@ abstract public class Mission {
         return emeraldsReward;
     }
 
-    public MissionType getType() {
-        return missionType;
-    }
 
 
     /*
@@ -77,7 +73,7 @@ abstract public class Mission {
     /**
      * Gives the owner's mission the experience and emerald reward.
      */
-    protected void giveReward() {
+    protected void completeAndReward() {
         if (this.completed == true) return;
 
         this.completed = true;
@@ -97,4 +93,6 @@ abstract public class Mission {
      * @return an itemstack to display the Mission's status in a GUI
      */
     abstract public ItemStack getGUIItem();
+
+    abstract public void processEvent(Event event);
 }

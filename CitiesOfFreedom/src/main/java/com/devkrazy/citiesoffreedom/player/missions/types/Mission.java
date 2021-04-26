@@ -5,8 +5,9 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.game.missions;
+package com.devkrazy.citiesoffreedom.player.missions.types;
 
+import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
@@ -23,16 +24,17 @@ abstract public class Mission {
     private int xpReward;
     private int emeraldsReward;
     private boolean completed;
+    private MissionScope missionScope;
 
 
-
-    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward) {
+    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope) {
         this.name = name;
         this.player = player;
         this.guiMaterial = guiMaterial;
         this.xpReward = xpReward;
         this.emeraldsReward = emeraldsReward;
         this.completed = false;
+        this.missionScope = missionScope;
     }
 
 
@@ -64,6 +66,9 @@ abstract public class Mission {
         return emeraldsReward;
     }
 
+    public MissionScope getScope() {
+        return this.missionScope;
+    }
 
 
     /*

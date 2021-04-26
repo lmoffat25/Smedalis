@@ -1,71 +1,48 @@
 /*
  * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This BlockBreakMission.java file is a part of the Smedalis project.
+ * This CountMission.java file is a part of the Smedalis project.
  * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
  *
  */
 
-package com.devkrazy.citiesoffreedom.game.missions;
+package com.devkrazy.citiesoffreedom.player.missions.types;
 
+import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class BlockBreakMission extends Mission {
+abstract public class CountMission extends Mission {
 
     private int goal;
     private int counter;
-    private Material blockType;
 
-    public BlockBreakMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, Material blockType) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward);
+    public CountMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope) {
+        super(name, player, guiMaterial, xpReward, emeraldsReward, missionScope);
         this.goal = goal;
         this.counter = 0;
-        this.blockType = blockType;
     }
 
 
     /*
-    Getters and setters
+    Getters
      */
 
-    public int getGoal() {
-        return goal;
+    protected int getGoal() {
+        return this.goal;
     }
 
-    public void setGoal(int goal) {
-        this.goal = goal;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
+    protected int getCounter() {
+        return this.counter;
     }
 
 
     /*
     Methods
      */
-
-    @Override
-    public void processEvent(Event event) {
-        if (event instanceof BlockBreakEvent) {
-            if (((BlockBreakEvent) event).getBlock().getType() == this.blockType) {
-                this.incrementCounterOf(1);
-                if (this.isGoalReached() == true) {
-                    this.completeAndReward();
-                }
-            }
-        }
-    }
 
     /**
      * Increments the mission counter by a given value. If the counter reaches the mission goal,
@@ -89,12 +66,11 @@ public class BlockBreakMission extends Mission {
         return this.counter == this.goal;
     }
 
-
     /**
      * @return an itemstack representing the mission to display in a GUI
      */
     @Override
     public ItemStack getGUIItem() {
-        return new ItemBuilder(this.getGuiMaterial(), this.getName()).setLore("" + ChatColor.GRAY + this.counter + "/" + this.goal).build();
+        return new ItemBuilder(this.getGuiMaterial(), this.getName()).setLore("" + ChatColor.GRAY + this.getCounter() + "/" + this.getGoal()).build();
     }
 }

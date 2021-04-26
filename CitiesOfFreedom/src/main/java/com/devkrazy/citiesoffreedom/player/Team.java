@@ -5,9 +5,8 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.game;
+package com.devkrazy.citiesoffreedom.player;
 
-import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

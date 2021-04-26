@@ -5,15 +5,12 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.game;
+package com.devkrazy.citiesoffreedom.player;
 
-import com.devkrazy.citiesoffreedom.game.missions.Mission;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * This enum represents all the available jobs in the game CitiesOfFreedom.
@@ -31,6 +28,7 @@ public enum Job {
         this.name = name;
         this.guiMaterial = guiMaterial;
     }
+
 
     /*
     Getters

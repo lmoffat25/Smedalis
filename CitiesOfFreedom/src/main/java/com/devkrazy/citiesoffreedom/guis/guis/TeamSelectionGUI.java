@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.game.Team;
+import com.devkrazy.citiesoffreedom.player.Team;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;

@@ -7,15 +7,14 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.game.Job;
-import com.devkrazy.citiesoffreedom.game.Team;
-import com.devkrazy.citiesoffreedom.game.missions.Mission;
+import com.devkrazy.citiesoffreedom.game.events.JobPickEvent;
+import com.devkrazy.citiesoffreedom.player.Job;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class JobsGUI {
@@ -52,10 +51,8 @@ public class JobsGUI {
             menu.addButton(new GUIButton(job.getGuiItem()) {
                 @Override
                 public void onClick() {
-                    cofPlayer.setJob(job);
+                    Bukkit.getServer().getPluginManager().callEvent(new JobPickEvent(player, job));
                     player.closeInventory();
-                    player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi le métier " +
-                            ChatColor.of("#2c596e") + job.toString() + ChatColor.GRAY + "."));
                 }
             });
 

@@ -7,9 +7,8 @@
 
 package com.devkrazy.citiesoffreedom.player;
 
-import com.devkrazy.citiesoffreedom.game.Job;
-import com.devkrazy.citiesoffreedom.game.Team;
-import com.devkrazy.citiesoffreedom.game.missions.Mission;
+import com.devkrazy.citiesoffreedom.player.missions.types.Mission;
+import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Chest;
@@ -85,8 +84,7 @@ public class CoFPlayer {
     }
 
     /**
-     * Adds a Mission to the CoFPlayer's missions list. If the CoFPlayer already has a mission of the same
-     * type, does nothing.
+     * Adds a Mission to the CoFPlayer's personal missions list.
      * @param mission the mission to add
      */
     public void addMission(Mission mission) {
@@ -94,11 +92,10 @@ public class CoFPlayer {
     }
 
     /**
-     * Removes a Mission from the CoFPlayer's missions list.
-     * @param mission the mission to remove
+     * Removes all the job missions of the current cof player's missions list.
      */
-    public void removeMission(Mission mission) {
-        this.missions.remove(mission);
+    public void removeJobMissions() {
+        this.missions.removeIf(mission -> mission.getScope() == MissionScope.JOB);
     }
 
     /**
@@ -122,9 +119,8 @@ public class CoFPlayer {
         return this.team != null;
     }
 
-
     /**
-     * Processes a given event for each of the player's missions.
+     * Processes a given event for each of the player's missions (personal and job missions).
      * @param event the event to process
      */
     public void processEvent(Event event) {
@@ -132,26 +128,4 @@ public class CoFPlayer {
             mission.processEvent(event);
         }
     }
-
-/*    *//**
-     * @param missionType the mission type
-     * @return true if the player has a mission of the given mission type; false otherwise
-     *//*
-    public boolean hasMission(MissionType missionType) {
-        for (Mission mission : this.missions) {
-            if (mission.getType() == missionType) return true;
-        }
-        return false;
-    }
-
-    *//**
-     * @param missionType the type of the mission
-     * @return the Mission of the given type if the CoFPlayer has one of the given type; null otherwise
-     *//*
-    public Mission getMission(MissionType missionType) {
-        for (Mission mission : this.missions) {
-            if (mission.getType() == missionType) return mission;
-        }
-        return null;
-    }*/
 }

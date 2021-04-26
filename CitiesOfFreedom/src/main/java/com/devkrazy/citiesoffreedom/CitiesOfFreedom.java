@@ -10,10 +10,7 @@ package com.devkrazy.citiesoffreedom;
 import com.devkrazy.citiesoffreedom.commands.JobsCommand;
 import com.devkrazy.citiesoffreedom.commands.MissionsCommand;
 import com.devkrazy.citiesoffreedom.commands.TeamCommand;
-import com.devkrazy.citiesoffreedom.listeners.ConnectionListener;
-import com.devkrazy.citiesoffreedom.listeners.GUIListener;
-import com.devkrazy.citiesoffreedom.listeners.InteractListener;
-import com.devkrazy.citiesoffreedom.listeners.MissionsListener;
+import com.devkrazy.citiesoffreedom.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +27,7 @@ public class CitiesOfFreedom extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new GUIListener(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new InteractListener(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new MissionsListener(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new JobsListener(), instance);
 
 
         // register commands

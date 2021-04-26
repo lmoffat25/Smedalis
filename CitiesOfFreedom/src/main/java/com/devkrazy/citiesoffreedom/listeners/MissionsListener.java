@@ -22,5 +22,6 @@ public class MissionsListener implements Listener {
         CoFPlayersManager manager = CoFPlayersManager.getInstance();
         CoFPlayer cofPlayer = manager.getCoFPlayer(player);
         cofPlayer.processEvent(event);
+        System.out.println("Material." + event.getBlock().getType());
     }
 }

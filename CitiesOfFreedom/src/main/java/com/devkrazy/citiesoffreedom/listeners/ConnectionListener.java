@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.game.missions.BreakBlockMission;
+import com.devkrazy.citiesoffreedom.game.missions.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import org.bukkit.Material;
@@ -25,9 +25,12 @@ public class ConnectionListener implements Listener {
         CoFPlayersManager manager = CoFPlayersManager.getInstance();
         CoFPlayer cofPlayer = manager.createCoFPlayer(player);
 
+
         // Test //
-        cofPlayer.addMission(new BreakBlockMission("Casser de la stone", player, Material.STONE,
-                100, 10));
+        cofPlayer.addMission(new BlockBreakMission("Casser de la stone", player, Material.STONE,
+                100, 10, 10, Material.STONE));
+        cofPlayer.addMission(new BlockBreakMission("Casser du sable", player, Material.SAND,
+                100, 10, 5, Material.SAND));
         // End Test //
     }
 

@@ -8,7 +8,7 @@
 package com.devkrazy.citiesoffreedom.commands;
 
 import com.devkrazy.citiesoffreedom.game.Team;
-import com.devkrazy.citiesoffreedom.guis.TeamSelectionGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamSelectionGUI;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import net.kyori.adventure.text.Component;

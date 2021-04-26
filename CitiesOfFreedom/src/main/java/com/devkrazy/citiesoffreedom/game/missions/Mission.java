@@ -71,7 +71,7 @@ abstract public class Mission {
      */
 
     /**
-     * Gives the owner's mission the experience and emerald reward.
+     * Gives the owner's mission the experience and emerald reward and mark the mission as completed.
      */
     protected void completeAndReward() {
         if (this.completed == true) return;
@@ -85,14 +85,13 @@ abstract public class Mission {
     }
 
     /**
-     * @return a copy of the current Mission
-     */
-    abstract public Mission copy();
-
-    /**
      * @return an itemstack to display the Mission's status in a GUI
      */
     abstract public ItemStack getGUIItem();
 
+    /**
+     * Processed a given event and updates the mission status if necessary.
+     * @param event the event to process
+     */
     abstract public void processEvent(Event event);
 }

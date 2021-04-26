@@ -1,12 +1,13 @@
 /*
  * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This BreakBlockMission.java file is a part of the Smedalis project.
+ * This BlockBreakMission.java file is a part of the Smedalis project.
  * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
  *
  */
 
 package com.devkrazy.citiesoffreedom.game.missions;
 
+import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
@@ -15,15 +16,17 @@ import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class BreakBlockMission extends Mission {
+public class BlockBreakMission extends Mission {
 
     private int goal;
     private int counter;
+    private Material blockType;
 
-    public BreakBlockMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward) {
+    public BlockBreakMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, Material blockType) {
         super(name, player, guiMaterial, xpReward, emeraldsReward);
-        this.goal = 10;
+        this.goal = goal;
         this.counter = 0;
+        this.blockType = blockType;
     }
 
 
@@ -55,7 +58,7 @@ public class BreakBlockMission extends Mission {
     @Override
     public void processEvent(Event event) {
         if (event instanceof BlockBreakEvent) {
-            if (((BlockBreakEvent) event).getBlock().getType() == Material.STONE) {
+            if (((BlockBreakEvent) event).getBlock().getType() == this.blockType) {
                 this.incrementCounterOf(1);
                 if (this.isGoalReached() == true) {
                     this.completeAndReward();
@@ -79,17 +82,19 @@ public class BreakBlockMission extends Mission {
         this.getPlayer().sendMessage(Component.text(ChatColor.GREEN + "Mission \"" + this.getName() + "\" +" + count));
     }
 
+    /**
+     * @return true if the mission goal is reached; false otherwise
+     */
     public boolean isGoalReached() {
         return this.counter == this.goal;
     }
 
-    @Override
-    public Mission copy() {
-        return null;
-    }
 
+    /**
+     * @return an itemstack representing the mission to display in a GUI
+     */
     @Override
     public ItemStack getGUIItem() {
-        return null;
+        return new ItemBuilder(this.getGuiMaterial(), this.getName()).setLore("" + ChatColor.GRAY + this.counter + "/" + this.goal).build();
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
 public class CoFPlayer {
 
     private Job job;
-    private final List<Mission> missions;
+    private List<Mission> missions;
     private Chest chest;
     private Location spawnPoint;
     private Team team;
@@ -123,6 +123,10 @@ public class CoFPlayer {
     }
 
 
+    /**
+     * Processes a given event for each of the player's missions.
+     * @param event the event to process
+     */
     public void processEvent(Event event) {
         for (Mission mission : this.missions) {
             mission.processEvent(event);

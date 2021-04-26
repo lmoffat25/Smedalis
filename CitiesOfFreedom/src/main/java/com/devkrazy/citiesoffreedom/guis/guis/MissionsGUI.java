@@ -5,9 +5,11 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.guis;
+package com.devkrazy.citiesoffreedom.guis.guis;
 
 import com.devkrazy.citiesoffreedom.game.missions.Mission;
+import com.devkrazy.citiesoffreedom.guis.GUIButton;
+import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import net.md_5.bungee.api.ChatColor;

@@ -7,19 +7,20 @@
 
 package com.devkrazy.citiesoffreedom.commands;
 
+import com.devkrazy.citiesoffreedom.guis.guis.JobsGUI;
 import com.devkrazy.citiesoffreedom.guis.guis.MissionsGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class MissionsCommand implements CommandExecutor {
+public class JobsCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender  instanceof Player) {
             Player player = (Player) sender;
-            MissionsGUI.getInstance().open(player);
+            JobsGUI.getInstance().open(player);
         }
         return true;
     }

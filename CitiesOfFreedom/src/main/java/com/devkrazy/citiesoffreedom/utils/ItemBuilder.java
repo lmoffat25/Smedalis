@@ -50,17 +50,18 @@ public class ItemBuilder {
      * Sets the display name of the ItemBuilder.
      * @param name the name that will be given to the item
      */
-    public void setName(String name) {
+    public ItemBuilder setName(String name) {
         ItemMeta meta = this.getMeta();
         meta.displayName(Component.text(name));
         this.itemStack.setItemMeta(meta);
+        return this;
     }
 
     /**
      * Sets the lore of the ItemBuilder.
      * @param lore a list of Strings
      */
-    public void setLore(String... lore) {
+    public ItemBuilder setLore(String... lore) {
         ItemMeta meta = this.getMeta();
         List<Component> components = new ArrayList<>();
         for (String line : lore) {
@@ -69,6 +70,7 @@ public class ItemBuilder {
         }
         meta.lore(components);
         this.itemStack.setItemMeta(meta);
+        return this;
     }
 
     /**

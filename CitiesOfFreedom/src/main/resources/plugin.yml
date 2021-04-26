@@ -13,3 +13,7 @@ commands:
     description: Commande d'affichage des missions.
     usage: /missions
     permission: cof.missions
+  jobs:
+    description: Commande d'affichage des métiers.
+    usage: /jobs
+    permission: cof.jobs

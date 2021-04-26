@@ -8,9 +8,11 @@
 package com.devkrazy.citiesoffreedom.game;
 
 import com.devkrazy.citiesoffreedom.game.missions.Mission;
+import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,13 +26,10 @@ public enum Job {
 
     private String name;
     private Material guiMaterial;
-    private List<Mission> missions;
 
     Job(String name, Material guiMaterial) {
         this.name = name;
         this.guiMaterial = guiMaterial;
-        this.missions = new ArrayList<>();
-
     }
 
     /*
@@ -45,7 +44,16 @@ public enum Job {
         return this.guiMaterial;
     }
 
-    public List<Mission> getMissions() {
-        return this.missions;
+
+    /*
+    Methods
+     */
+
+    /**
+     * @return an itemstack representing the job to display in a GUI
+     */
+    public ItemStack getGuiItem() {
+        return new ItemBuilder(this.guiMaterial, this.name).build();
     }
+
 }

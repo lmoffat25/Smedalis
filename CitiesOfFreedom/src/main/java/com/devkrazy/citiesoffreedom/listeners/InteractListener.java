@@ -7,9 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.guis.TeamSelectionGUI;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamSelectionGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

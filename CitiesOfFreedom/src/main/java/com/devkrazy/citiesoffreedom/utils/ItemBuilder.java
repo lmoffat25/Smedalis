@@ -10,6 +10,8 @@ package com.devkrazy.citiesoffreedom.utils;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,6 +33,14 @@ public class ItemBuilder {
     }
 
     /**
+     * Constructs an ItemBuilder from an existing itemstack.
+     * @param itemStack the itemstack used to construct the ItemBuilder
+     */
+    public ItemBuilder(ItemStack itemStack) {
+        this.itemStack = itemStack;
+    }
+
+    /**
      * Constructs an ItemBuilder with a material and a name
      * @param material the material
      * @param amount the name that will be given to the item
@@ -48,6 +58,7 @@ public class ItemBuilder {
 
     /**
      * Sets the display name of the ItemBuilder.
+     * @return the updated ItemBuilder
      * @param name the name that will be given to the item
      */
     public ItemBuilder setName(String name) {
@@ -60,6 +71,7 @@ public class ItemBuilder {
     /**
      * Sets the lore of the ItemBuilder.
      * @param lore a list of Strings
+     * @return the updated ItemBuilder
      */
     public ItemBuilder setLore(String... lore) {
         ItemMeta meta = this.getMeta();
@@ -70,6 +82,24 @@ public class ItemBuilder {
         }
         meta.lore(components);
         this.itemStack.setItemMeta(meta);
+        return this;
+    }
+
+
+    /**
+     * Adds the enchantment glow effect to the item without actually enchanting it.
+     * @return the updated ItemBuilder
+     */
+    public ItemBuilder addGlow() {
+        ItemMeta meta = this.getMeta();
+        if (this.itemStack.getType().toString().contains("BOW")) {
+            // add a protection enchantment
+            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+        } else {
+            // add an infinity enchantment
+            meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+        }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS); // hides the enchantment in the lore
         return this;
     }
 

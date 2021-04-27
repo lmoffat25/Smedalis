@@ -82,6 +82,7 @@ abstract public class Mission {
         if (this.completed == true) return;
 
         this.completed = true;
+
         ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
         this.player.getInventory().addItem(builder.build());
         // TODO: check if player's inventory is not full

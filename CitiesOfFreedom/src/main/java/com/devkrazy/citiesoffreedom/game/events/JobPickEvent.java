@@ -12,6 +12,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+/**
+ * A custom event called when a player picks a jjob.
+ */
+
 public final class JobPickEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();

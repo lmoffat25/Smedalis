@@ -45,8 +45,16 @@ public class JobsListener implements Listener {
                     100, 10, 500, MissionScope.JOB, Material.COAL_ORE));
             cofPlayer.addMission(new BlockBreakMission("Casser du minerai de diamant", player, Material.DIAMOND_ORE,
                     100, 10, 100, MissionScope.JOB, Material.DIAMOND_ORE));
-            cofPlayer.addMission(new BlockBreakMission("Casser du minerai de diamant", player, Material.DIAMOND_ORE,
-                    100, 10, 100, MissionScope.JOB, Material.DIAMOND_ORE));
+            cofPlayer.addMission(new BlockBreakMission("Casser du minerai d'or", player, Material.GOLD_ORE,
+                    100, 10, 150, MissionScope.JOB, Material.GOLD_ORE));
+            cofPlayer.addMission(new BlockBreakMission("Casser du gravier", player, Material.GRAVEL,
+                    100, 10, 200, MissionScope.JOB, Material.GRAVEL));
+            cofPlayer.addMission(new BlockBreakMission("Casser du minerai de quartz", player, Material.NETHER_QUARTZ_ORE,
+                    100, 10, 300, MissionScope.JOB, Material.NETHER_QUARTZ_ORE));
+            cofPlayer.addMission(new BlockBreakMission("Casser des débris antiques", player, Material.ANCIENT_DEBRIS,
+                    100, 10, 30, MissionScope.JOB, Material.ANCIENT_DEBRIS));
+            cofPlayer.addMission(new BlockBreakMission("Casser de l'obsidienne", player, Material.OBSIDIAN,
+                    100, 10, 50, MissionScope.JOB, Material.OBSIDIAN));
         }
 
         if (job == Job.SOLDIER) {

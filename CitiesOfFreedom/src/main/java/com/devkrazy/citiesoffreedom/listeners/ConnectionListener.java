@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.player.missions.BlockBreakMission;
+import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
@@ -29,7 +29,7 @@ public class ConnectionListener implements Listener {
 
         // Test //
         cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", player, Material.REDSTONE,
-                100, 10, 10, MissionScope.PERSONAL, Material.REDSTONE));
+                100, 10, 10, MissionScope.PERSONAL, Material.REDSTONE_WIRE));
         // End Test //
     }
 

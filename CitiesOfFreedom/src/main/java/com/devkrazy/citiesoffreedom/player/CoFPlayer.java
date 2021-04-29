@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.player;
 
-import com.devkrazy.citiesoffreedom.player.missions.types.Mission;
+import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

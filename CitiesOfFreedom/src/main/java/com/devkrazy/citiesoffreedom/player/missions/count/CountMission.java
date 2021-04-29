@@ -5,11 +5,11 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.player.missions.types;
+package com.devkrazy.citiesoffreedom.player.missions.count;
 
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
+import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -45,32 +45,36 @@ abstract public class CountMission extends Mission {
      */
 
     /**
-     * Increments the mission counter by a given value. If the counter reaches the mission goal,
-     * then the player is rewarded with the mission reward.
-     * Does nothing if the counter already reached the mission goal.
+     * Increments the mission counter by a given value. This function will make sure that the counter
+     * remains lower than or equal to the goal. Does nothing if the counter already reached the mission goal.
      * @param count the value to increment the counter with (must be strictly positive)
      */
-    public void incrementCounterOf(int count) {
-        if (this.isCompleted()) return;
+    protected void incrementCounterOf(int count) {
+        if (this.isCompleted() == true) return;
         if (count <= 0) return;
-
         int increment = this.counter + count < this.goal ? count  : this.goal - this.counter;
         this.counter += increment;
-        this.getPlayer().sendMessage(Component.text(ChatColor.GREEN + "Mission \"" + this.getName() + "\" +" + count));
+        //this.getPlayer().sendMessage(Component.text(ChatColor.GREEN + "Mission \"" + this.getName() + "\" +" + count));
     }
 
-    /**
-     * @return true if the mission goal is reached; false otherwise
+    /*
+    Overridden methods
      */
-    public boolean isGoalReached() {
-        return this.counter == this.goal;
-    }
 
     /**
      * @return an itemstack representing the mission to display in a GUI
      */
     @Override
-    public ItemStack getGUIItem() {
-        return new ItemBuilder(this.getGuiMaterial(), this.getName()).setLore("" + ChatColor.GRAY + this.getCounter() + "/" + this.getGoal()).build();
+    public ItemStack buildGUIItem() {
+        ChatColor counterColor = this.counter == this.goal ? ChatColor.GREEN : ChatColor.RED;
+        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal()).build();
+    }
+
+    /**
+     * @return true if the counter reached the goal; false otherwise
+     */
+    @Override
+    public boolean isCompleted() {
+        return this.counter == this.goal;
     }
 }

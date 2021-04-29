@@ -5,9 +5,9 @@
  *
  */
 
-package com.devkrazy.citiesoffreedom.player.missions;
+package com.devkrazy.citiesoffreedom.player.missions.count;
 
-import com.devkrazy.citiesoffreedom.player.missions.types.CountMission;
+import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -31,9 +31,7 @@ public class BlockPlaceMission extends CountMission {
         if (event instanceof BlockPlaceEvent) {
             if (((BlockPlaceEvent) event).getBlock().getType() == this.blockType) {
                 this.incrementCounterOf(1);
-                if (this.isGoalReached() == true) {
-                    this.completeAndReward();
-                }
+                this.checkAdvancementAndReward();
             }
         }
     }

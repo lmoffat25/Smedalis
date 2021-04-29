@@ -70,7 +70,7 @@ public class ItemBuilder {
 
     /**
      * Sets the lore of the ItemBuilder.
-     * @param lore a list of Strings
+     * @param lore an array of Strings
      * @return the updated ItemBuilder
      */
     public ItemBuilder setLore(String... lore) {
@@ -78,7 +78,39 @@ public class ItemBuilder {
         List<Component> components = new ArrayList<>();
         for (String line : lore) {
             // converts each line of the lore into a TextComponent add adds it to the components list
-            components.add(0, Component.text(line));
+            components.add(Component.text(line));
+        }
+        meta.lore(components);
+        this.itemStack.setItemMeta(meta);
+        return this;
+    }
+
+    /**
+     * Sets the lore of the ItemBuilder.
+     * @param lore a list of components
+     * @return the updated ItemBuilder
+     */
+    public ItemBuilder setLore(List<Component> lore) {
+        ItemMeta meta = this.getMeta();
+        meta.lore(lore);
+        this.itemStack.setItemMeta(meta);
+        return this;
+    }
+
+    /**
+     * Adds new lines to the lore of the ItemBuilder.
+     * @param lore a list of Strings
+     * @return the updated ItemBuilder
+     */
+    public ItemBuilder addToLore(String... lore) {
+        ItemMeta meta = this.getMeta();
+
+        // initializes a new ArrayList if the lore is null
+        List<Component> components = meta.lore() == null ? new ArrayList<>() : meta.lore();
+
+        for (String line : lore) {
+            // converts each line of the lore into a TextComponent add adds it to the components list
+            components.add(Component.text(line));
         }
         meta.lore(components);
         this.itemStack.setItemMeta(meta);
@@ -94,12 +126,14 @@ public class ItemBuilder {
         ItemMeta meta = this.getMeta();
         if (this.itemStack.getType().toString().contains("BOW")) {
             // add a protection enchantment
-            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            this.itemStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         } else {
             // add an infinity enchantment
-            meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+            this.itemStack.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
         }
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS); // hides the enchantment in the lore
+        this.itemStack.setItemMeta(meta);
+        // TODO: not displaying the enchantment glow
         return this;
     }
 

@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.player.missions.types.Mission;
+import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
@@ -46,7 +46,7 @@ public class MissionsGUI {
 
         // displays the player's personal missions
         for (Mission mission : cofPlayer.getMissions()) {
-            menu.addButton(new GUIButton(mission.getGUIItem()));
+            menu.addButton(new GUIButton(mission.buildGUIItem()));
         }
 
         menu.pack();

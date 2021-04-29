@@ -9,13 +9,17 @@ package com.devkrazy.citiesoffreedom.listeners;
 
 import com.devkrazy.citiesoffreedom.game.events.JobPickEvent;
 import com.devkrazy.citiesoffreedom.player.Job;
-import com.devkrazy.citiesoffreedom.player.missions.BlockBreakMission;
+import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
+import com.devkrazy.citiesoffreedom.player.missions.count.BlockPlaceMission;
+import com.devkrazy.citiesoffreedom.player.missions.count.EntityKillMission;
+import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -58,7 +62,18 @@ public class JobsListener implements Listener {
         }
 
         if (job == Job.SOLDIER) {
-
+            cofPlayer.addMission(new EntitiesKillMission("Mobocide", player, Material.DIAMOND_SWORD,
+                    100, 10, MissionScope.JOB, EntityType.SPIDER, EntityType.SKELETON, EntityType.CREEPER));
+            cofPlayer.addMission(new BlockPlaceMission("Poser des torches", player, Material.TORCH,
+                    100, 10, 100, MissionScope.JOB, Material.TORCH));
+            cofPlayer.addMission(new EntityKillMission("Respect aux ancêtres", player, Material.ZOMBIE_SPAWN_EGG,
+                    100, 10, 50, MissionScope.JOB, EntityType.ZOMBIE));
+            cofPlayer.addMission(new EntityKillMission("Araknophobe", player, Material.SPIDER_SPAWN_EGG,
+                    100, 10, 50, MissionScope.JOB, EntityType.SPIDER));
+            cofPlayer.addMission(new EntityKillMission("Du calcium pour tout le monde", player, Material.SKELETON_SPAWN_EGG,
+                    100, 10, 50, MissionScope.JOB, EntityType.SKELETON));
+            cofPlayer.addMission(new EntityKillMission("Une espèce d'un autre monde", player, Material.ENDERMAN_SPAWN_EGG,
+                    100, 10, 20, MissionScope.JOB, EntityType.ENDERMAN));
         }
 
         player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi le métier " +

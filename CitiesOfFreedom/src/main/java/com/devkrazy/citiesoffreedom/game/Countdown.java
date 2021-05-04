@@ -11,6 +11,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+/**
+ * This class is used to create countdowns.
+ * You just need to override the onCount method which is called every second.
+ */
 abstract public class Countdown {
 
     private int remainingTime;

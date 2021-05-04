@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.game.events.JobPickEvent;
+import com.devkrazy.citiesoffreedom.events.JobPickEvent;
 import com.devkrazy.citiesoffreedom.player.Job;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;

@@ -28,6 +28,7 @@ public class CitiesOfFreedom extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new InteractListener(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new MissionsListener(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new JobsListener(), instance);
+        Bukkit.getServer().getPluginManager().registerEvents(new EntitiesListeners(), instance);
 
 
         // register commands

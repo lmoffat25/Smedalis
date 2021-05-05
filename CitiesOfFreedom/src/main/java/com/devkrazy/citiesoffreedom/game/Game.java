@@ -8,6 +8,7 @@
 package com.devkrazy.citiesoffreedom.game;
 
 
+import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
@@ -27,6 +28,13 @@ public class Game {
     private boolean pvpEnabled;
     private GameState state;
 
+    private Countdown gameStartCountdown = new Countdown(10, CitiesOfFreedom.getInstance()) {
+        @Override
+        protected void onEnd() {
+            Game.getInstance().start();
+        }
+    };
+
 
     private Game() {
         this.pvpEnabled = false;
@@ -34,7 +42,7 @@ public class Game {
     }
 
     /**
-     * @return the CoFPlayersManager instance.
+     * @return the Game's instance.
      */
     public static Game getInstance() {
         return instance;
@@ -49,9 +57,12 @@ public class Game {
     }
 
     public GameState getState() {
-        return state;
+        return this.state;
     }
 
+    public Countdown getGameStartCountdown() {
+        return this.gameStartCountdown;
+    }
 
     /*
     Setters
@@ -69,21 +80,33 @@ public class Game {
     Methods
      */
 
+    /**
+     * Starts the game. If the game is already started does nothing.
+     */
     public void start() {
-        this.setState(GameState.PLAYING);
-        this.setPvpEnabled(true);
-        Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
-                Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy")));
+        if (this.getState() == GameState.WAITING) {
+            this.setState(GameState.PLAYING);
+            this.setPvpEnabled(true);
+            Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
+                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy")));
 
-        // creates a calendar with the current time in the Europe/Paris timezone
-        Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
-        rightNow.add(Calendar.MINUTE, 1);
+            // creates a calendar with the current time in the Europe/Paris timezone
+            Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
+            rightNow.add(Calendar.SECOND, 20);
 
-        new Timer().schedule(new EndGameTask(), rightNow.getTime());
-
+            new Timer().schedule(new EndGameTask(), rightNow.getTime());
+        }
     }
 
+    /**
+     * Ends the game.
+     */
     public void end() {
-        Bukkit.getServer().sendMessage(Component.text("FIN DE LA PARTIE"));
+        if (this.getState() == GameState.PLAYING) {
+            this.setState(GameState.FINISHED);
+            this.setPvpEnabled(false);
+            Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.RED + "Partie terminée."),
+                    Component.text(ChatColor.GRAY + "Votez pour votre ville préférée.")));
+        }
     }
 }

@@ -19,7 +19,7 @@ public class InteractListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getItem() != null) {
-            if (event.getItem().equals(TeamsGUI.getInstance().getOpener())) {
+            if (event.getItem().getItemMeta().equals(TeamsGUI.getInstance().getOpener().getItemMeta())) {
                 TeamsGUI.getInstance().open(player);
                 event.setCancelled(true);
             }

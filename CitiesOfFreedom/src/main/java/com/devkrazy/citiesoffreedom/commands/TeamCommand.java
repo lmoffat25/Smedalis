@@ -46,7 +46,7 @@ public class TeamCommand implements CommandExecutor {
             return true;
         } else {
             sender.sendMessage("Vous devez être un joueur pour éxecuter cette commande.");
-            return false;
+            return true;
         }
     }
 }

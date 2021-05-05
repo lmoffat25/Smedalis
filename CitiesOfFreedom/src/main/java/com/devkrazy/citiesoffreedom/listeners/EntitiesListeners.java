@@ -8,6 +8,7 @@
 package com.devkrazy.citiesoffreedom.listeners;
 
 import com.devkrazy.citiesoffreedom.game.Game;
+import com.devkrazy.citiesoffreedom.game.GameState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,12 +21,14 @@ public class EntitiesListeners implements Listener {
     public void onHit(EntityDamageByEntityEvent event) {
         Entity damaged = event.getEntity();
         Entity damager = event.getDamager();
+        Game game = Game.getInstance();
+
+        if (game.getState() == GameState.WAITING) {
+            event.setCancelled(true);
+        }
 
         if (damaged instanceof Player && damager instanceof Player) {
             // a player damaged an other player
-
-            Game game = Game.getInstance();
-
             if (game.isPvpEnabled() == false) {
                 event.setCancelled(true);
             }

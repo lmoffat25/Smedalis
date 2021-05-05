@@ -9,5 +9,5 @@ package com.devkrazy.citiesoffreedom.game;
 
 public enum GameState {
 
-    WAITING, PLAYING, VOTING, FINISHED;
+    WAITING, PLAYING, FINISHED;
 }

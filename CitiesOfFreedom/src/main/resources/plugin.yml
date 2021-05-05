@@ -17,3 +17,7 @@ commands:
     description: Commande d'affichage des métiers.
     usage: /jobs
     permission: cof.jobs
+  game:
+    description: Commande de gestion de la partie.
+    usage: /game
+    permission: cof.game

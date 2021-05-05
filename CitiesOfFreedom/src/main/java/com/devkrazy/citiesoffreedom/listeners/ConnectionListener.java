@@ -32,12 +32,6 @@ public class ConnectionListener implements Listener {
     private final int onlinePlayersAmount = Bukkit.getServer().getOnlinePlayers().size();
     private final Game game = Game.getInstance();
 
-    private final Countdown gameStartCountdown = new Countdown(10, CitiesOfFreedom.getInstance()) {
-        @Override
-        protected void onEnd() {
-            Game.getInstance().start();
-        }
-    };
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -46,7 +40,7 @@ public class ConnectionListener implements Listener {
 
         Bukkit.getServer().sendMessage(Component.text("JOUEURS " + settings.getMinimumPlayers()));
         if (onlinePlayersAmount == settings.getMinimumPlayers() - 1 && game.getState() == GameState.WAITING) {
-            this.gameStartCountdown.start();
+            game.getGameStartCountdown().start();
         }
 
         // Test //
@@ -61,7 +55,7 @@ public class ConnectionListener implements Listener {
         manager.deleteCoFPlayer(player);
 
         if (onlinePlayersAmount <= settings.getMinimumPlayers()) {
-            this.gameStartCountdown.reset();
+            game.getGameStartCountdown().reset();
         }
     }
 }

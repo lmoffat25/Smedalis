@@ -7,6 +7,7 @@
 
 package com.devkrazy.citiesoffreedom;
 
+import com.devkrazy.citiesoffreedom.commands.GameCommand;
 import com.devkrazy.citiesoffreedom.commands.JobsCommand;
 import com.devkrazy.citiesoffreedom.commands.MissionsCommand;
 import com.devkrazy.citiesoffreedom.commands.TeamCommand;
@@ -36,6 +37,7 @@ public class CitiesOfFreedom extends JavaPlugin {
         instance.getCommand("team").setExecutor(new TeamCommand());
         instance.getCommand("missions").setExecutor(new MissionsCommand());
         instance.getCommand("jobs").setExecutor(new JobsCommand());
+        instance.getCommand("game").setExecutor(new GameCommand());
 
 
         Bukkit.getLogger().info("CitiesOfFreedom enabled !");

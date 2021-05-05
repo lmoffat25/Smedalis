@@ -8,9 +8,16 @@
 package com.devkrazy.citiesoffreedom.game;
 
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+
+import java.util.*;
+
 /**
  * A singleton class representing the game. It can manage its state, the pvp and many other things related
- * to a CitiesofFreedom game.
+ * to a CitiesOfFreedom game.
  */
 
 public class Game {
@@ -45,6 +52,7 @@ public class Game {
         return state;
     }
 
+
     /*
     Setters
      */
@@ -53,11 +61,29 @@ public class Game {
         this.state = state;
     }
 
+    public void setPvpEnabled(boolean pvpEnabled) {
+        this.pvpEnabled = pvpEnabled;
+    }
+
     /*
     Methods
      */
 
     public void start() {
         this.setState(GameState.PLAYING);
+        this.setPvpEnabled(true);
+        Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
+                Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy")));
+
+        // creates a calendar with the current time in the Europe/Paris timezone
+        Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
+        rightNow.add(Calendar.MINUTE, 1);
+
+        new Timer().schedule(new EndGameTask(), rightNow.getTime());
+
+    }
+
+    public void end() {
+        Bukkit.getServer().sendMessage(Component.text("FIN DE LA PARTIE"));
     }
 }

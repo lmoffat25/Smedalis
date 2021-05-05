@@ -39,7 +39,7 @@ public class JobsListener implements Listener {
         if (game.getState() != GameState.WAITING) {
             // prevents the player to change job if the game has started
             event.setCancelled(true);
-            player.sendMessage(Component.text(ChatColor.RED + "La partie a déjà commencé vous ne pouvez plus changer."));
+            player.sendMessage(Component.text(ChatColor.RED + "Vous ne pouvez plus changer de métier."));
             // TODO: set a default job
             return;
         }

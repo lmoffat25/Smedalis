@@ -26,7 +26,7 @@ public class JobsGUI {
      */
 
     /**
-     * @return the TeamSelectionGUI's instance
+     * @return the TeamsGUI's instance
      */
     public static JobsGUI getInstance() {
         return instance;
@@ -47,6 +47,7 @@ public class JobsGUI {
         CoFPlayersManager manager = CoFPlayersManager.getInstance();
         CoFPlayer cofPlayer = manager.getCoFPlayer(player);
 
+        // Populates the GUI with all the available jobs
         for (Job job : Job.values()) {
             menu.addButton(new GUIButton(job.getGuiItem()) {
                 @Override

@@ -7,8 +7,8 @@
 
 package com.devkrazy.citiesoffreedom.commands;
 
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsGUI;
 import com.devkrazy.citiesoffreedom.player.Team;
-import com.devkrazy.citiesoffreedom.guis.guis.TeamSelectionGUI;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import net.kyori.adventure.text.Component;
@@ -35,11 +35,11 @@ public class TeamCommand implements CommandExecutor {
             }
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("item")) {
-                    player.getInventory().addItem(TeamSelectionGUI.getInstance().getOpener());
+                    player.getInventory().addItem(TeamsGUI.getInstance().getOpener());
                     player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de sélection d'équipe."));
                 }
                 if (args[0].equalsIgnoreCase("open")) {
-                    TeamSelectionGUI.getInstance().open(player);
+                    TeamsGUI.getInstance().open(player);
                     player.sendMessage(Component.text(ChatColor.GRAY + "Choisissez votre équipe."));
                 }
             }

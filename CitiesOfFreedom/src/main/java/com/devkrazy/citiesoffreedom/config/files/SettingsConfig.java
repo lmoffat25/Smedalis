@@ -31,4 +31,12 @@ public class SettingsConfig {
     public static SettingsConfig getInstance() {
         return instance;
     }
+
+    /*
+    Config file getters
+     */
+
+    public int getMinimumPlayers() {
+        return this.config.getInt("min-players");
+    }
 }

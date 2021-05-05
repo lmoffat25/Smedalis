@@ -7,10 +7,17 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
+import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
+import com.devkrazy.citiesoffreedom.config.files.SettingsConfig;
+import com.devkrazy.citiesoffreedom.game.Countdown;
+import com.devkrazy.citiesoffreedom.game.Game;
+import com.devkrazy.citiesoffreedom.game.GameState;
 import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,12 +27,27 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ConnectionListener implements Listener {
 
+    private final CoFPlayersManager manager = CoFPlayersManager.getInstance();
+    private final SettingsConfig settings = SettingsConfig.getInstance();
+    private final int onlinePlayersAmount = Bukkit.getServer().getOnlinePlayers().size();
+    private final Game game = Game.getInstance();
+
+    private final Countdown gameStartCountdown = new Countdown(10, CitiesOfFreedom.getInstance()) {
+        @Override
+        protected void onEnd() {
+            Game.getInstance().start();
+        }
+    };
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        CoFPlayersManager manager = CoFPlayersManager.getInstance();
         CoFPlayer cofPlayer = manager.createCoFPlayer(player);
 
+        Bukkit.getServer().sendMessage(Component.text("JOUEURS " + settings.getMinimumPlayers()));
+        if (onlinePlayersAmount == settings.getMinimumPlayers() - 1 && game.getState() == GameState.WAITING) {
+            this.gameStartCountdown.start();
+        }
 
         // Test //
         cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", player, Material.REDSTONE,
@@ -36,7 +58,10 @@ public class ConnectionListener implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        CoFPlayersManager manager = CoFPlayersManager.getInstance();
         manager.deleteCoFPlayer(player);
+
+        if (onlinePlayersAmount <= settings.getMinimumPlayers()) {
+            this.gameStartCountdown.reset();
+        }
     }
 }

@@ -23,10 +23,12 @@ public class EntitiesListeners implements Listener {
         Entity damager = event.getDamager();
         Game game = Game.getInstance();
 
+        // Cannot damage if the game is waiting for players
         if (game.getState() == GameState.WAITING) {
             event.setCancelled(true);
         }
 
+        // Cannot PvP if PvP is off
         if (damaged instanceof Player && damager instanceof Player) {
             // a player damaged an other player
             if (game.isPvpEnabled() == false) {

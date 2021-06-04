@@ -17,6 +17,7 @@ import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.player.missions.count.BlockPlaceMission;
 import com.devkrazy.citiesoffreedom.player.missions.count.EntityKillMission;
+import com.devkrazy.citiesoffreedom.player.missions.count.ItemBreakMission;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
@@ -84,6 +85,16 @@ public class JobsListener implements Listener {
                 100, 10, 30, MissionScope.JOB, Material.ANCIENT_DEBRIS));
         cofPlayer.addMission(new BlockBreakMission("Casser de l'obsidienne", player, Material.OBSIDIAN,
                 100, 10, 50, MissionScope.JOB, Material.OBSIDIAN));
+        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en bois", player, Material.WOODEN_PICKAXE,
+                100, 1, 1, MissionScope.JOB, Material.WOODEN_PICKAXE));
+        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en pierre", player, Material.STONE_PICKAXE,
+                200, 2, 1, MissionScope.JOB, Material.STONE_PICKAXE));
+        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en fer", player, Material.IRON_PICKAXE,
+                300, 3, 1, MissionScope.JOB, Material.IRON_PICKAXE));
+        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en diamant", player, Material.DIAMOND_PICKAXE,
+                500, 5, 1, MissionScope.JOB, Material.DIAMOND_PICKAXE));
+        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en netherite", player, Material.NETHERITE_PICKAXE,
+                1200, 12, 1, MissionScope.JOB, Material.NETHERITE_PICKAXE));
     }
 
     /**

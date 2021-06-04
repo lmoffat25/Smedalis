@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This BlockBreakMission.java file is a part of the Smedalis project.
+ * This ItemBreakMission.java file is a part of the Smedalis project.
  * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
  *
  */
@@ -11,15 +11,15 @@ import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerItemBreakEvent;
 
-public class BlockBreakMission extends CountMission {
+public class ItemBreakMission extends CountMission {
 
-    private Material blockType;
+    private Material itemMaterial;
 
-    public BlockBreakMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material blockType) {
+    public ItemBreakMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemMaterial) {
         super(name, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
-        this.blockType = blockType;
+        this.itemMaterial = itemMaterial;
     }
 
     /**
@@ -28,8 +28,8 @@ public class BlockBreakMission extends CountMission {
      */
     @Override
     public void processEvent(Event event) {
-        if (event instanceof BlockBreakEvent) {
-            if (((BlockBreakEvent) event).getBlock().getType() == this.blockType) {
+        if (event instanceof PlayerItemBreakEvent) {
+            if (((PlayerItemBreakEvent) event).getBrokenItem().getType() == this.itemMaterial) {
                 this.incrementCounterOf(1);
                 this.checkAdvancementAndReward();
             }

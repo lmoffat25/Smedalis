@@ -22,7 +22,7 @@ public class TeamCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender  instanceof Player) {
+        if (sender instanceof Player) {
             Player player = (Player) sender;
             CoFPlayersManager manager = CoFPlayersManager.getInstance();
             CoFPlayer cofPlayer = manager.getCoFPlayer(player);
@@ -34,7 +34,7 @@ public class TeamCommand implements CommandExecutor {
                 player.sendMessage(Component.text(ChatColor.GRAY + "Vous n'avez pas d'équipe."));
             }
             if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("item")) {
+                if (args[0].equalsIgnoreCase("item")) { // /team item
                     player.getInventory().addItem(TeamsGUI.getInstance().getOpener());
                     player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de sélection d'équipe."));
                 }

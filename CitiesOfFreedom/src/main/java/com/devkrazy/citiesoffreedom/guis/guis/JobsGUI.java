@@ -21,6 +21,7 @@ public class JobsGUI {
 
     private static JobsGUI instance = new JobsGUI();
 
+
     /*
     Getters
      */

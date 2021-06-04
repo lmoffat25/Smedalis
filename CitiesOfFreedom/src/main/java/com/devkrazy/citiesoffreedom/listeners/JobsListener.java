@@ -19,9 +19,11 @@ import com.devkrazy.citiesoffreedom.player.missions.count.BlockPlaceMission;
 import com.devkrazy.citiesoffreedom.player.missions.count.EntityKillMission;
 import com.devkrazy.citiesoffreedom.player.missions.count.ItemBreakMission;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
+import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameMission;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -111,9 +113,13 @@ public class JobsListener implements Listener {
                 100, 10, 50, MissionScope.JOB, EntityType.ZOMBIE));
         cofPlayer.addMission(new EntityKillMission("Araknophobe", player, Material.SPIDER_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.SPIDER));
+        cofPlayer.addMission(new EntityKillMission("Boss final des internets", player, Material.WITHER_SKELETON_SKULL,
+                1000, 100, 1, MissionScope.JOB, EntityType.WITHER));
         cofPlayer.addMission(new EntityKillMission("Du calcium pour tout le monde", player, Material.SKELETON_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.SKELETON));
         cofPlayer.addMission(new EntityKillMission("Une espèce d'un autre monde", player, Material.ENDERMAN_SPAWN_EGG,
                 100, 10, 20, MissionScope.JOB, EntityType.ENDERMAN));
+        cofPlayer.addMission(new EntitiesTameMission("Défense déléguée", player, Material.DIAMOND_SWORD,
+                100, 10, MissionScope.JOB, EntityType.WOLF, EntityType.POLAR_BEAR, EntityType.FOX, EntityType.CAT));
     }
 }

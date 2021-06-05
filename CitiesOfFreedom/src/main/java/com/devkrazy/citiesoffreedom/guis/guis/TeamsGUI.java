@@ -23,6 +23,12 @@ public class TeamsGUI {
     private static TeamsGUI instance = new TeamsGUI();
     private final ItemStack OPENER = new ItemBuilder(Material.WHITE_BED, ChatColor.of("#c73434") + "Choix équipes").build();
 
+    /*
+    Constructor
+    */
+    private TeamsGUI(){
+
+    }
 
     /*
     Getters

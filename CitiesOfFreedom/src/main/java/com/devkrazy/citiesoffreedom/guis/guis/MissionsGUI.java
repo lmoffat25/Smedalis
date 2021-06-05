@@ -20,6 +20,13 @@ public class MissionsGUI {
     private static MissionsGUI instance = new MissionsGUI();
 
     /*
+    Constructor
+    */
+    private MissionsGUI(){
+
+    }
+
+    /*
     Getters
      */
 

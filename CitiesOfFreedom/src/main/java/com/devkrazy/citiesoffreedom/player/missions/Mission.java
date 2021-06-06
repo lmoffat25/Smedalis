@@ -24,10 +24,12 @@ abstract public class Mission {
     private int emeraldsReward;
     private MissionScope missionScope;
     private boolean finished;
+    private String description;
 
 
-    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope) {
+    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope) {
         this.name = name;
+        this.description = description;
         this.player = player;
         this.guiItemStack = new ItemBuilder(guiMaterial, 1).setName(ChatColor.WHITE + this.name).build();
         this.xpReward = xpReward;
@@ -44,6 +46,8 @@ abstract public class Mission {
     public String getName() {
         return this.name;
     }
+
+    public String getDescription() { return this.description;}
 
     protected ItemStack getGUIItem() {
         return this.guiItemStack;

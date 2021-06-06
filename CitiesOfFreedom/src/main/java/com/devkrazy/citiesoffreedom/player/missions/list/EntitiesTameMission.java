@@ -16,8 +16,8 @@ import org.bukkit.event.entity.EntityTameEvent;
 
 public class EntitiesTameMission extends ListMission<EntityType> {
 
-    public EntitiesTameMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
+    public EntitiesTameMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
+        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
     }
 
     @Override

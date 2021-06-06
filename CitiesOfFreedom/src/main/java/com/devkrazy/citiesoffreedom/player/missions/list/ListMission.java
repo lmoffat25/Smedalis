@@ -33,8 +33,8 @@ abstract public class ListMission<T> extends Mission {
     private List<T> remainingItems;
     private List<T> completedItems;
 
-    protected ListMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, T... initialItems) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, missionScope);
+    protected ListMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, T... initialItems) {
+        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
         this.remainingItems = new LinkedList<>(Arrays.asList(initialItems)); // linked list for faster remove
         this.completedItems = new ArrayList<>();
     }

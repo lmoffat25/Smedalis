@@ -17,8 +17,8 @@ public class ItemBreakMission extends CountMission {
 
     private Material itemMaterial;
 
-    public ItemBreakMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemMaterial) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public ItemBreakMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemMaterial) {
+        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
         this.itemMaterial = itemMaterial;
     }
 

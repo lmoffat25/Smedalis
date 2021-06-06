@@ -16,8 +16,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntitiesKillMission extends ListMission<EntityType> {
 
-    public EntitiesKillMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
+    public EntitiesKillMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
+        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
     }
 
     @Override

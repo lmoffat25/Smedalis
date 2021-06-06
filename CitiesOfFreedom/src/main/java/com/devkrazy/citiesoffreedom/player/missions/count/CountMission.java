@@ -20,8 +20,8 @@ abstract public class CountMission extends Mission {
     private int goal;
     private int counter;
 
-    public CountMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, missionScope);
+    public CountMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope) {
+        super(name, description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
         this.goal = goal;
         this.counter = 0;
     }
@@ -67,7 +67,7 @@ abstract public class CountMission extends Mission {
     @Override
     public ItemStack buildGUIItem() {
         ChatColor counterColor = this.counter == this.goal ? ChatColor.GREEN : ChatColor.RED;
-        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal()).build();
+        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal(),this.getDescription()).build();
     }
 
     /**

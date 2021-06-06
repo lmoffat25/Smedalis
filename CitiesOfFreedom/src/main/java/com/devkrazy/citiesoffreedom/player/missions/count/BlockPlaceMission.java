@@ -17,8 +17,8 @@ public class BlockPlaceMission extends CountMission {
 
     private Material blockType;
 
-    public BlockPlaceMission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material blockType) {
-        super(name, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public BlockPlaceMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material blockType) {
+        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
         this.blockType = blockType;
     }
 

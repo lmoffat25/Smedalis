@@ -7,13 +7,12 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.events.TeamPickEvent;
+import com.devkrazy.citiesoffreedom.config.files.TeamsConfig;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.Team;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
 public class TeamsTeleportationGUI {
 
     private static TeamsTeleportationGUI instance = new TeamsTeleportationGUI();
-    private final ItemStack OPENER = new ItemBuilder(Material.COMPASS, ChatColor.of("#53e669") + "Téléportation équipes").build();
+    private final ItemStack OPENER = new ItemBuilder(Material.COMPASS, ChatColor.GRAY + "Téléportation équipes").build();
 
     /*
     Constructor
@@ -43,7 +42,7 @@ public class TeamsTeleportationGUI {
     /**
      * @return the ItemStack that can be used to open the teams teleportation GUI
      */
-    public ItemStack getOPENER() {
+    public ItemStack getOpener() {
         return this.OPENER;
     }
 
@@ -65,7 +64,7 @@ public class TeamsTeleportationGUI {
             menu.setButton(slot, new GUIButton(team.getGuiItem()) {
                 @Override
                 public void onClick() {
-                    //player.teleport()
+                    player.teleport(TeamsConfig.getInstance().getTeamSpawn(team));
                     player.closeInventory();
                 }
             });

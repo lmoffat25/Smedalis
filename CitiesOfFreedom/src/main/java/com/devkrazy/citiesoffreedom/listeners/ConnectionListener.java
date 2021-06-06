@@ -7,9 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
 import com.devkrazy.citiesoffreedom.config.files.SettingsConfig;
-import com.devkrazy.citiesoffreedom.game.Countdown;
 import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
 import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;

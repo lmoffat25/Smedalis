@@ -67,7 +67,7 @@ abstract public class CountMission extends Mission {
     @Override
     public ItemStack buildGUIItem() {
         ChatColor counterColor = this.counter == this.goal ? ChatColor.GREEN : ChatColor.RED;
-        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal(),this.getDescription()).build();
+        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal(),ChatColor.GRAY+this.getDescription()).build();
     }
 
     /**

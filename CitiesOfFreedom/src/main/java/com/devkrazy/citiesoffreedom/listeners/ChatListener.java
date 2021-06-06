@@ -4,13 +4,11 @@ import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.jetbrains.annotations.NotNull;
 
 
 public class ChatListener implements Listener {
@@ -30,26 +28,32 @@ public class ChatListener implements Listener {
 
         //TODO check if it's more effecient to add little by little or define the entire component at once
 
-        ChatRenderer newChatRender = new ChatRenderer() {
+        ChatRenderer newChatRender = (player, component, component1, audience) -> {
 
-            @Override
-            public @NotNull Component render(@NotNull Player player, @NotNull Component component, @NotNull Component component1, @NotNull Audience audience) {
-                Component renderedChat;
+            Component renderedChat;
 
-                if(CoFp.getTeam() != null){
-                    renderedChat = Component.text(p.getName() +" : " + event.originalMessage());
+            if(CoFp.getTeam() == null){
+
+                if(CoFp.getJob() == null) {
+                    renderedChat = Component.text(ChatColor.GRAY + p.getName() + " : ");
                 }
                 else{
-                    ChatColor teamColor = CoFp.getTeam().getColor();
-                    if(CoFp.getJob() == null){
-                        renderedChat = Component.text(ChatColor.GRAY + "[" + teamColor + CoFp.getJob() + "]" + p.getName() +" : " + event.originalMessage());
-                    }
-                    else{
-                        renderedChat = Component.text(ChatColor.GRAY + "[" + teamColor + "Chomeur" + "]" + p.getName() +" : " + event.originalMessage());
-                    }
+                    renderedChat = Component.text(ChatColor.GRAY + "[" + CoFp.getJob().getName() +"] "+ p.getName() + " : ");
                 }
-                return renderedChat;
+
             }
+            else {
+                ChatColor teamColor = CoFp.getTeam().getColor();
+                if(CoFp.getJob()!=null){
+                    renderedChat = Component.text(ChatColor.GRAY +"[" + teamColor +  CoFp.getJob().getName()+ ChatColor.GRAY + "] " + teamColor + p.getName() + ChatColor.GRAY +" : ");
+                }
+                else{
+                    renderedChat = Component.text(teamColor + p.getName() + ChatColor.GRAY +" : ");
+                }
+
+            }
+            renderedChat = renderedChat.append(event.originalMessage());
+            return renderedChat;
         };
 
         event.renderer(newChatRender);

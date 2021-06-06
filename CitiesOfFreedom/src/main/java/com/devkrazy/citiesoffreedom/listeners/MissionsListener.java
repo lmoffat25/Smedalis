@@ -17,6 +17,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class MissionsListener implements Listener {
 
@@ -46,5 +48,15 @@ public class MissionsListener implements Listener {
             CoFPlayer cofPlayer = manager.getCoFPlayer(killerPlayer);
             cofPlayer.processEvent(event);
         }
+    }
+
+    @EventHandler
+    public void onPlayerItemConsumeEvent(PlayerItemConsumeEvent event){
+
+        Player player = event.getPlayer();
+        CoFPlayersManager manager = CoFPlayersManager.getInstance();
+        CoFPlayer cofPlayer = manager.getCoFPlayer(player);
+        cofPlayer.processEvent(event);
+
     }
 }

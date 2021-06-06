@@ -11,13 +11,10 @@ import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
 import com.devkrazy.citiesoffreedom.events.JobPickEvent;
 import com.devkrazy.citiesoffreedom.player.Job;
-import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
+import com.devkrazy.citiesoffreedom.player.missions.count.*;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
-import com.devkrazy.citiesoffreedom.player.missions.count.BlockPlaceMission;
-import com.devkrazy.citiesoffreedom.player.missions.count.EntityKillMission;
-import com.devkrazy.citiesoffreedom.player.missions.count.ItemBreakMission;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameMission;
 import net.kyori.adventure.text.Component;
@@ -28,6 +25,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 public class JobsListener implements Listener {
 
@@ -121,5 +120,7 @@ public class JobsListener implements Listener {
                 100, 10, 20, MissionScope.JOB, EntityType.ENDERMAN));
         cofPlayer.addMission(new EntitiesTameMission("Défense déléguée", "Apprivoiser un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.WOLF, EntityType.POLAR_BEAR, EntityType.FOX, EntityType.CAT));
+        cofPlayer.addMission(new ItemConsumeMission("Monstre de puissance", "Consommer une potion de force II.", player,Material.POTION,2,
+                100, 1, MissionScope.JOB, PotionEffectType.INCREASE_DAMAGE,2));
     }
 }

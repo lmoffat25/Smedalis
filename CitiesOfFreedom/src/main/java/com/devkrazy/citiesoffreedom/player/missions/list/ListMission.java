@@ -68,7 +68,7 @@ abstract public class ListMission<T> extends Mission {
     public ItemStack buildGUIItem() {
         ItemBuilder builder = new ItemBuilder(this.getGUIItem());
         List<Component> lore = new ArrayList<>();
-        lore.add(Component.text(ChatColor.GRAY + this.getDescription()));
+        lore.add(Component.text("" + ChatColor.GRAY + this.getDescription()));
 
         for (Object item : this.remainingItems) {
             lore.add(format(item, ChatColor.RED));

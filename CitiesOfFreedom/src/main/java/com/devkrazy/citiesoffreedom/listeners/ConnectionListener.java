@@ -38,10 +38,13 @@ public class ConnectionListener implements Listener {
         Player player = event.getPlayer();
         CoFPlayer cofPlayer = manager.createCoFPlayer(player);
 
-        Bukkit.getServer().sendMessage(Component.text("JOUEURS " + settings.getMinimumPlayers()));
+        Bukkit.getServer().sendMessage(Component.text("JOUEURS MIN POUR START " + settings.getMinimumPlayers()));
         if (onlinePlayersAmount == settings.getMinimumPlayers() - 1 && game.getState() == GameState.WAITING) {
             game.getGameStartCountdown().start();
         }
+
+        SettingsConfig.getInstance().setLocation(player.getLocation());
+        SettingsConfig.getInstance().getCustomConfig().save();
 
         // Test //
         cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", "Casser le nombre de poudre de redstone requis.", player, Material.REDSTONE,

@@ -7,7 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
-import com.devkrazy.citiesoffreedom.guis.guis.TeamsGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsSelectionGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,8 +19,8 @@ public class InteractListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getItem() != null) {
-            if (event.getItem().getItemMeta().equals(TeamsGUI.getInstance().getOpener().getItemMeta())) {
-                TeamsGUI.getInstance().open(player);
+            if (event.getItem().getItemMeta().equals(TeamsSelectionGUI.getInstance().getOpener().getItemMeta())) {
+                TeamsSelectionGUI.getInstance().open(player);
                 event.setCancelled(true);
             }
         }

@@ -1,0 +1,27 @@
+rouge:
+  spawn:
+    ==: org.bukkit.Location
+    world: world
+    x: 165.25405786458862
+    y: 75.78261590512203
+    z: -7.851695837374874
+    pitch: 76.83723
+    yaw: 243.92236
+bleue:
+  spawn:
+    ==: org.bukkit.Location
+    world: world
+    x: 165.25405786458862
+    y: 75.78261590512203
+    z: -7.851695837374874
+    pitch: 76.83723
+    yaw: 243.92236
+violette:
+  spawn:
+    ==: org.bukkit.Location
+    world: world
+    x: 165.25405786458862
+    y: 75.78261590512203
+    z: -7.851695837374874
+    pitch: 76.83723
+    yaw: 243.92236

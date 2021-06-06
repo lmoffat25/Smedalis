@@ -9,6 +9,7 @@ package com.devkrazy.citiesoffreedom.config.files;
 
 import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
 import com.devkrazy.citiesoffreedom.config.CustomConfig;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -32,11 +33,22 @@ public class SettingsConfig {
         return instance;
     }
 
+    /**
+     * @return the custom config
+     */
+    public CustomConfig getCustomConfig() {
+        return this.settings;
+    }
+
     /*
     Config file getters
      */
 
     public int getMinimumPlayers() {
         return this.config.getInt("min-players");
+    }
+
+    public void setLocation(Location loc) {
+        this.config.set("loc", loc);
     }
 }

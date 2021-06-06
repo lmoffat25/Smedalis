@@ -8,15 +8,14 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 public class ItemConsumeMission extends CountMission {
 
-    private PotionEffectType potionType;
+    private PotionType potionType;
     private int level;
 
-    public ItemConsumeMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, PotionEffectType potionType,int level) {
+    public ItemConsumeMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, PotionType potionType,int level) {
         super(name, description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
         this.potionType = potionType;
         this.level = level;
@@ -29,17 +28,23 @@ public class ItemConsumeMission extends CountMission {
     @Override
     public void processEvent(Event event) {
         if (event instanceof PlayerItemConsumeEvent) {
-            PotionMeta meta = (PotionMeta) ((PlayerItemConsumeEvent) event).getItem().getItemMeta();
-            if(meta.getCustomEffects().size() == 1){
+            if(((PlayerItemConsumeEvent) event).getItem().getItemMeta() instanceof PotionMeta){
 
-                PotionEffectType potionEffect= meta.getCustomEffects().get(0).getType();
-                int amplifier = meta.getCustomEffects().get(0).getAmplifier();
+                PotionMeta meta = (PotionMeta) ((PlayerItemConsumeEvent) event).getItem().getItemMeta();
+                PotionData data = meta.getBasePotionData();
+                if(data.getType()== this.potionType){
 
-                System.out.println(amplifier);
+                    if(this.level>1 && data.isUpgraded()){
 
-                if(potionEffect == this.potionType && amplifier == this.level){
-                    this.incrementCounterOf(1);
-                    this.checkAdvancementAndReward();
+                        this.incrementCounterOf(1);
+                        this.checkAdvancementAndReward();
+                    }
+                    else{
+                        if(level<1){
+                            this.incrementCounterOf(1);
+                            this.checkAdvancementAndReward();
+                        }
+                    }
                 }
             }
         }

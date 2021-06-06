@@ -121,6 +121,8 @@ public class JobsListener implements Listener {
         cofPlayer.addMission(new EntitiesTameMission("Défense déléguée", "Apprivoiser un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.WOLF, EntityType.POLAR_BEAR, EntityType.FOX, EntityType.CAT));
         cofPlayer.addMission(new ItemConsumeMission("Monstre de puissance", "Consommer une potion de force II.", player,Material.POTION,2,
-                100, 1, MissionScope.JOB, PotionEffectType.INCREASE_DAMAGE,2));
+                100, 1, MissionScope.JOB, PotionType.STRENGTH,2));
+        cofPlayer.addMission(new EntityKillMission("Traîtrise contrôlée", "Tuer un golem.", player,Material.IRON_INGOT,2,
+                100,1,MissionScope.JOB, EntityType.IRON_GOLEM));
     }
 }

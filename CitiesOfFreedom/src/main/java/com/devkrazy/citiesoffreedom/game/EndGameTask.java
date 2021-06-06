@@ -14,6 +14,9 @@ import java.util.TimerTask;
  */
 public class EndGameTask extends TimerTask {
 
+    /**
+     * Ends the game when the task is executed.
+     */
     @Override
     public void run() {
         Game game = Game.getInstance();

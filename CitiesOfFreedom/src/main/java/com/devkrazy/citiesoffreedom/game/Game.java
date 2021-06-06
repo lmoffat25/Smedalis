@@ -88,7 +88,7 @@ public class Game {
             this.setState(GameState.PLAYING);
             this.setPvpEnabled(true);
             Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
-                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy")));
+                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy & MarouanLaBagarre")));
 
             // creates a calendar with the current time in the Europe/Paris timezone
             Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));

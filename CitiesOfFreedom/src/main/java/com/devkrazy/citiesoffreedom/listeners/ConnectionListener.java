@@ -44,7 +44,7 @@ public class ConnectionListener implements Listener {
         }
 
         // Test //
-        cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", player, Material.REDSTONE,
+        cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", "Casser le nombre de poudre de redstone requis.", player, Material.REDSTONE,
                 100, 10, 10, MissionScope.PERSONAL, Material.REDSTONE_WIRE));
         // End Test //
     }

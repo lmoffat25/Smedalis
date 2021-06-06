@@ -133,7 +133,7 @@ public class ItemBuilder {
         }
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS); // hides the enchantment in the lore
         this.itemStack.setItemMeta(meta);
-        // TODO: not displaying the enchantment glow
+        // TODO: fix the method, not displaying the enchantment glow
         return this;
     }
 

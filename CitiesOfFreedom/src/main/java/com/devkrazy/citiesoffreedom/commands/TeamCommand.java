@@ -45,7 +45,10 @@ public class TeamCommand implements CommandExecutor {
 
                         player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de téléportation d'équipe."));
                     }
+
                 }
+            } else {
+                return false;
             }
             if (args[0].equalsIgnoreCase("open")) {
                 TeamsSelectionGUI.getInstance().open(player);

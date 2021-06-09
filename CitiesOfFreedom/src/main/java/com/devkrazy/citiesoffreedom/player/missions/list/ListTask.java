@@ -9,6 +9,7 @@ package com.devkrazy.citiesoffreedom.player.missions.list;
 
 import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
+import com.devkrazy.citiesoffreedom.player.missions.Task;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import com.devkrazy.citiesoffreedom.utils.StringUtils;
 import net.kyori.adventure.text.Component;
@@ -28,15 +29,16 @@ import java.util.List;
  * This class is used to represent missions which have a list of actions.
  * For example killing one of every hostile mobs, breaking one of
  */
-abstract public class ListMission<T> extends Mission {
+abstract public class ListTask<T> extends Task {
 
     private List<T> remainingItems;
     private List<T> completedItems;
 
-    protected ListMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, T... initialItems) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
+    protected ListTask(String name, String description, Player player, Material guiMaterial, MissionScope missionScope, T... initialItems) {
+        super(name,description, player, guiMaterial, missionScope);
         this.remainingItems = new LinkedList<>(Arrays.asList(initialItems)); // linked list for faster remove
         this.completedItems = new ArrayList<>();
+
     }
 
 
@@ -62,26 +64,6 @@ abstract public class ListMission<T> extends Mission {
      */
 
     /**
-     * @return an itemstack representing the mission to display in a GUI
-     */
-    @Override
-    public ItemStack buildGUIItem() {
-        ItemBuilder builder = new ItemBuilder(this.getGUIItem());
-        List<Component> lore = new ArrayList<>();
-        lore.add(Component.text("" + ChatColor.GRAY + this.getDescription()));
-
-        for (Object item : this.remainingItems) {
-            lore.add(format(item, ChatColor.RED));
-        }
-        for (Object item : this.completedItems) {
-            lore.add(format(item, ChatColor.GREEN));
-        }
-
-        builder.setLore(lore);
-        return builder.build();
-    }
-
-    /**
      * Formats a given item to a TextComponent. The returned TextComponent can then be added to the lore
      * @param item the item to format
      * @param color the color of the resulting TextComponent
@@ -91,11 +73,4 @@ abstract public class ListMission<T> extends Mission {
         return Component.text(color + " - " + StringUtils.capitalize(item.toString()));
     }
 
-    /**
-     * @return true if the remaining items list is empty; false otherwise
-     */
-    @Override
-    public boolean isCompleted() {
-        return this.remainingItems.size() == 0;
-    }
 }

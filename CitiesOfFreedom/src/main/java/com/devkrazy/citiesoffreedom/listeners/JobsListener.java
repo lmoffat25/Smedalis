@@ -15,17 +15,15 @@ import com.devkrazy.citiesoffreedom.player.missions.count.*;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
-import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
-import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameMission;
+import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillTask;
+import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameTask;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 public class JobsListener implements Listener {
@@ -103,8 +101,9 @@ public class JobsListener implements Listener {
      * @param cofPlayer the associated cofPlayer
      * @param player the player
      */
+
     private void giveSoldierMissions(CoFPlayer cofPlayer, Player player) {
-        cofPlayer.addMission(new EntitiesKillMission("Mobocide", "Tuer un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
+        cofPlayer.addMission(new EntitiesKillTask("Mobocide", "Tuer un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.SPIDER, EntityType.SKELETON, EntityType.CREEPER));
         cofPlayer.addMission(new BlockPlaceMission("Poser des torches", "Poser le nombre de torche requis.", player, Material.TORCH,
                 100, 10, 100, MissionScope.JOB, Material.TORCH));
@@ -118,7 +117,7 @@ public class JobsListener implements Listener {
                 100, 10, 50, MissionScope.JOB, EntityType.SKELETON));
         cofPlayer.addMission(new EntityKillMission("Une espèce d'un autre monde", "Tuer le nombre de d'endermen requis.", player, Material.ENDERMAN_SPAWN_EGG,
                 100, 10, 20, MissionScope.JOB, EntityType.ENDERMAN));
-        cofPlayer.addMission(new EntitiesTameMission("Défense déléguée", "Apprivoiser un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
+        cofPlayer.addMission(new EntitiesTameTask("Défense déléguée", "Apprivoiser un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.WOLF, EntityType.POLAR_BEAR, EntityType.FOX, EntityType.CAT));
         cofPlayer.addMission(new ItemConsumeMission("Monstre de puissance", "Consommer une potion de force II.", player,Material.POTION,2,
                 100, 1, MissionScope.JOB, PotionType.STRENGTH,2));

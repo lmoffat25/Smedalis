@@ -14,10 +14,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityTameEvent;
 
-public class EntitiesTameMission extends ListMission<EntityType> {
+public class EntitiesTameTask extends ListTask<EntityType> {
 
-    public EntitiesTameMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
+    public EntitiesTameTask(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
+        super(name,description, player, guiMaterial, missionScope, initialItems);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EntitiesTameMission extends ListMission<EntityType> {
         if (event instanceof EntityTameEvent) {
             EntityTameEvent entityTameEvent = (EntityTameEvent) event;
             this.completeItem(entityTameEvent.getEntity().getType());
-            this.checkAdvancementAndReward();
+            this.finish();
         }
     }
 }

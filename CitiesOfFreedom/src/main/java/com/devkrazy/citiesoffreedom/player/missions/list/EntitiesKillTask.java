@@ -14,10 +14,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class EntitiesKillMission extends ListMission<EntityType> {
+public class EntitiesKillTask extends ListTask<EntityType> {
 
-    public EntitiesKillMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope, initialItems);
+    public EntitiesKillTask(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
+        super(name,description, player, guiMaterial,missionScope, initialItems);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EntitiesKillMission extends ListMission<EntityType> {
         if (event instanceof EntityDeathEvent) {
             EntityDeathEvent entityDeathEvent = (EntityDeathEvent) event;
             this.completeItem(entityDeathEvent.getEntity().getType());
-            this.checkAdvancementAndReward();
+            this.finish();
         }
     }
 }

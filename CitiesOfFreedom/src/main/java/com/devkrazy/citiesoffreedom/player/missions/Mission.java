@@ -15,19 +15,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+
 abstract public class Mission {
 
     private String name;
+    private ArrayList<Task> taskList;
     private Player player;
     private ItemStack guiItemStack;
     private int xpReward;
     private int emeraldsReward;
     private MissionScope missionScope;
-    private boolean finished;
     private String description;
 
 
-    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope) {
+    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,Task t) {
         this.name = name;
         this.description = description;
         this.player = player;
@@ -35,7 +37,6 @@ abstract public class Mission {
         this.xpReward = xpReward;
         this.emeraldsReward = emeraldsReward;
         this.missionScope = missionScope;
-        this.finished = false;
     }
 
 
@@ -69,9 +70,6 @@ abstract public class Mission {
         return this.missionScope;
     }
 
-    public boolean isFinished() {
-        return this.finished;
-    }
 
     /*
     Methods
@@ -82,23 +80,30 @@ abstract public class Mission {
      * Marks the mission as finished.
      */
     private void finishAndReward() {
-        this.finished = true;
-        this.guiItemStack = new ItemBuilder(this.guiItemStack).addGlow().build();
-        ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
-        this.player.getInventory().addItem(builder.build());
-        // TODO: check if player's inventory is not full
-        this.player.giveExp(this.xpReward);
-        this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
+
+        if(this.isCompleted()){
+
+            this.guiItemStack = new ItemBuilder(this.guiItemStack).addGlow().build();
+            ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
+            this.player.getInventory().addItem(builder.build());
+            // TODO: check if player's inventory is not full
+            this.player.giveExp(this.xpReward);
+            this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
+        }
+
     }
+    //TODO check if it's really needed, in my opinion not needed
 
     /**
      * Checks the mission advancement and rewards the player if the mission is completed.
      */
+
     protected void checkAdvancementAndReward() {
-        if (this.isCompleted() == true && this.finished == false) {
+        if (this.isCompleted()) {
             this.finishAndReward();
         }
     }
+
 
     /*
     Abstract

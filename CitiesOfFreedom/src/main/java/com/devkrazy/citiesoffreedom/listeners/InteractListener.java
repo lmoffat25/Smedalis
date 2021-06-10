@@ -29,6 +29,7 @@ public class InteractListener implements Listener {
             System.out.println(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName());
             System.out.println(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName());
              */
+
             if (meta.displayName().toString().compareTo(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName().toString()) == 0) {
                 TeamsSelectionGUI.getInstance().open(player);
                 event.setCancelled(true);

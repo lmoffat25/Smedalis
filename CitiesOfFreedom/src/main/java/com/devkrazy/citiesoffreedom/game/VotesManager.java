@@ -13,7 +13,7 @@ import com.devkrazy.citiesoffreedom.player.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class VotesManager {
 
@@ -53,6 +53,37 @@ public class VotesManager {
 
     public boolean isVotingEnabled() {
         return this.votingEnabled;
+    }
+
+
+    /**
+     * Gets the winning team. In case of a draw between multiple teams, the winner will be chosen randomly between
+     * the winning teams.
+     * @return the winning team
+     */
+    public Team getWinningTeam() {
+        List<Map.Entry<Team, Integer>> votesCounterEntries = new ArrayList<>(this.votesCounter.entrySet());
+        List<Map.Entry<Team, Integer>> winnersEntries = new ArrayList<>();
+
+        winnersEntries.add(votesCounterEntries.get(0)); // initializes the winnersEntries
+
+        // Fills the winnersEntries list with the winning team(s)
+        for (Map.Entry<Team, Integer> voteCounterEntry : votesCounterEntries) {
+            Integer votesValue = voteCounterEntry.getValue();
+
+            if (votesValue > winnersEntries.get(0).getValue()) {
+                // there is a stronger team, we remove the older team(s)
+                winnersEntries.clear();
+                winnersEntries.add(voteCounterEntry);
+            }
+
+            if (votesValue == winnersEntries.get(0).getValue()) {
+                // we have a draw, we add the new winning team
+                winnersEntries.add(voteCounterEntry);
+            }
+        }
+
+        return winnersEntries.get(new Random().nextInt(winnersEntries.size())).getKey();
     }
 
 

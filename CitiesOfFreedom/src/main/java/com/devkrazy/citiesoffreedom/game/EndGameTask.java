@@ -22,6 +22,7 @@ public class EndGameTask extends TimerTask {
         Game.getInstance().end();
         VotesManager.getInstance().startVotingSession();
 
+        // schedules the "end votes" task
         Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
         rightNow.add(Calendar.SECOND, 20);
         new Timer().schedule(new EndVotesTask(), rightNow.getTime());

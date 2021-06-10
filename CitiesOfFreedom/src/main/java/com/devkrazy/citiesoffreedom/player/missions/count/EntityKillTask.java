@@ -14,12 +14,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class EntityKillMission extends CountMission {
+public class EntityKillTask extends CountTask {
 
     private EntityType entityType;
 
-    public EntityKillMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, EntityType entityType) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public EntityKillTask(String description, Player player,int goal, MissionScope missionScope, EntityType entityType) {
+        super(description, player, goal, missionScope);
         this.entityType = entityType;
     }
 
@@ -28,7 +28,7 @@ public class EntityKillMission extends CountMission {
         if (event instanceof EntityDeathEvent) {
             if (((EntityDeathEvent) event).getEntity().getType() == this.entityType) {
                 this.incrementCounterOf(1);
-                this.checkAdvancementAndReward();
+                this.checkAdvancementAndFinish();
             }
         }
     }

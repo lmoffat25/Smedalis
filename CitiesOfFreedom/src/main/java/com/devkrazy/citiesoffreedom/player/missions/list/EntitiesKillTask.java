@@ -16,8 +16,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntitiesKillTask extends ListTask<EntityType> {
 
-    public EntitiesKillTask(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name,description, player, guiMaterial,missionScope, initialItems);
+    public EntitiesKillTask(String description, Player player, MissionScope missionScope, EntityType... initialItems) {
+        super(description, player,missionScope, initialItems);
     }
 
     @Override
@@ -25,7 +25,8 @@ public class EntitiesKillTask extends ListTask<EntityType> {
         if (event instanceof EntityDeathEvent) {
             EntityDeathEvent entityDeathEvent = (EntityDeathEvent) event;
             this.completeItem(entityDeathEvent.getEntity().getType());
-            this.finish();
+            this.checkAdvancementAndFinish();
         }
     }
+
 }

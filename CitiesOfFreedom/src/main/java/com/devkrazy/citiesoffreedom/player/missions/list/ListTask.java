@@ -34,8 +34,8 @@ abstract public class ListTask<T> extends Task {
     private List<T> remainingItems;
     private List<T> completedItems;
 
-    protected ListTask(String name, String description, Player player, Material guiMaterial, MissionScope missionScope, T... initialItems) {
-        super(name,description, player, guiMaterial, missionScope);
+    protected ListTask(String description, Player player, MissionScope missionScope, T... initialItems) {
+        super(description, player, missionScope);
         this.remainingItems = new LinkedList<>(Arrays.asList(initialItems)); // linked list for faster remove
         this.completedItems = new ArrayList<>();
 
@@ -62,7 +62,12 @@ abstract public class ListTask<T> extends Task {
     /*
     Overridden methods
      */
-
+    @Override
+    public boolean isCompleted(){
+        return this.remainingItems.size() == 0;
+    }
+    @Override
+    public void checkAdvancementAndFinish(){}
     /**
      * Formats a given item to a TextComponent. The returned TextComponent can then be added to the lore
      * @param item the item to format

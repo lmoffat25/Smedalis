@@ -13,12 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 
-public class ItemBreakMission extends CountMission {
+public class ItemBreakTask extends CountTask {
 
     private Material itemMaterial;
 
-    public ItemBreakMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemMaterial) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public ItemBreakTask(String description, Player player, int goal, MissionScope missionScope, Material itemMaterial) {
+        super(description, player, goal, missionScope);
         this.itemMaterial = itemMaterial;
     }
 
@@ -31,7 +31,7 @@ public class ItemBreakMission extends CountMission {
         if (event instanceof PlayerItemBreakEvent) {
             if (((PlayerItemBreakEvent) event).getBrokenItem().getType() == this.itemMaterial) {
                 this.incrementCounterOf(1);
-                this.checkAdvancementAndReward();
+                this.checkAdvancementAndFinish();
             }
         }
     }

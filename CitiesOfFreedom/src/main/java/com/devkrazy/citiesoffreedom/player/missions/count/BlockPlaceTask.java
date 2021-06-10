@@ -13,12 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-public class BlockPlaceMission extends CountMission {
+public class BlockPlaceTask extends CountTask {
 
     private Material blockType;
 
-    public BlockPlaceMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material blockType) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public BlockPlaceTask(String description, Player player, int goal, MissionScope missionScope, Material blockType) {
+        super(description, player, goal, missionScope);
         this.blockType = blockType;
     }
 
@@ -31,7 +31,7 @@ public class BlockPlaceMission extends CountMission {
         if (event instanceof BlockPlaceEvent) {
             if (((BlockPlaceEvent) event).getBlock().getType() == this.blockType) {
                 this.incrementCounterOf(1);
-                this.checkAdvancementAndReward();
+                this.checkAdvancementAndFinish();
             }
         }
     }

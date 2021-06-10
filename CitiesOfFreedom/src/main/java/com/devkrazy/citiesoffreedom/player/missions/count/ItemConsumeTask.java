@@ -10,13 +10,13 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-public class ItemConsumeMission extends CountMission {
+public class ItemConsumeTask extends CountTask {
 
     private PotionType potionType;
     private int level;
 
-    public ItemConsumeMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, PotionType potionType,int level) {
-        super(name, description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public ItemConsumeTask(String description, Player player, int goal, MissionScope missionScope, PotionType potionType, int level) {
+        super(description, player, goal, missionScope);
         this.potionType = potionType;
         this.level = level;
     }
@@ -37,12 +37,12 @@ public class ItemConsumeMission extends CountMission {
                     if(this.level>1 && data.isUpgraded()){
 
                         this.incrementCounterOf(1);
-                        this.checkAdvancementAndReward();
+                        this.checkAdvancementAndFinish();
                     }
                     else{
                         if(level<1){
                             this.incrementCounterOf(1);
-                            this.checkAdvancementAndReward();
+                            this.checkAdvancementAndFinish();
                         }
                     }
                 }

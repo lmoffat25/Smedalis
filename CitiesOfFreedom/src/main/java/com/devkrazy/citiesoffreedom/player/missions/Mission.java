@@ -27,13 +27,11 @@ abstract public class Mission {
     private int xpReward;
     private int emeraldsReward;
     private MissionScope missionScope;
-    private String description;
     boolean isChronological;
 
 
-    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,boolean isChronological,Task... task) {
+    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,boolean isChronological,Task... task) {
         this.name = name;
-        this.description = description;
         this.player = player;
         this.guiItemStack = new ItemBuilder(guiMaterial, 1).setName(ChatColor.WHITE + this.name).build();
         this.xpReward = xpReward;
@@ -53,8 +51,6 @@ abstract public class Mission {
     }
 
     public ArrayList<Task> getTaskList(){return this.taskList;}
-
-    public String getDescription() { return this.description;}
 
     protected ItemStack getGUIItem() {
         return this.guiItemStack;
@@ -77,9 +73,12 @@ abstract public class Mission {
     }
 
     public Task getFirstTaskNotCompleted(){
+
         boolean found = false;
         int c = 0;
+
         while(!found){
+
             if(!taskList.get(c).isFinished()){
                 found = true;
             }

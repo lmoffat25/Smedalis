@@ -23,7 +23,7 @@ abstract public class Task {
     private String description;
 
 
-    protected Task(String name,String description, Player player, Material guiMaterial,MissionScope missionScope) {
+    protected Task(String description, Player player,MissionScope missionScope) {
 
         this.description = description;
         this.player = player;
@@ -70,5 +70,10 @@ abstract public class Task {
      * @param event the event to process
      */
     abstract public void processEvent(Event event);
+
+
+    abstract public boolean isCompleted();
+
+    abstract public void checkAdvancementAndFinish();
 
 }

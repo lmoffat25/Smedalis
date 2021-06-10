@@ -16,8 +16,8 @@ import org.bukkit.event.entity.EntityTameEvent;
 
 public class EntitiesTameTask extends ListTask<EntityType> {
 
-    public EntitiesTameTask(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, EntityType... initialItems) {
-        super(name,description, player, guiMaterial, missionScope, initialItems);
+    public EntitiesTameTask(String description, Player player, MissionScope missionScope, EntityType... initialItems) {
+        super(description, player, missionScope, initialItems);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EntitiesTameTask extends ListTask<EntityType> {
         if (event instanceof EntityTameEvent) {
             EntityTameEvent entityTameEvent = (EntityTameEvent) event;
             this.completeItem(entityTameEvent.getEntity().getType());
-            this.finish();
+            this.checkAdvancementAndFinish();
         }
     }
 }

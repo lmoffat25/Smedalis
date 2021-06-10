@@ -9,19 +9,20 @@ package com.devkrazy.citiesoffreedom.player.missions.count;
 
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.player.missions.Mission;
+import com.devkrazy.citiesoffreedom.player.missions.Task;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-abstract public class CountMission extends Mission {
+abstract public class CountTask extends Task {
 
     private int goal;
     private int counter;
 
-    public CountMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope) {
-        super(name, description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
+    public CountTask(String description, Player player, int goal, MissionScope missionScope) {
+        super(description, player, missionScope);
         this.goal = goal;
         this.counter = 0;
     }
@@ -62,19 +63,23 @@ abstract public class CountMission extends Mission {
      */
 
     /**
-     * @return an itemstack representing the mission to display in a GUI
-     */
-    @Override
-    public ItemStack buildGUIItem() {
-        ChatColor counterColor = this.counter == this.goal ? ChatColor.GREEN : ChatColor.RED;
-        return new ItemBuilder(this.getGUIItem()).setLore("" + counterColor + this.getCounter() + ChatColor.GRAY + "/" + this.getGoal(),"" + ChatColor.GRAY+this.getDescription()).build();
-    }
-
-    /**
      * @return true if the counter reached the goal; false otherwise
      */
     @Override
     public boolean isCompleted() {
-        return this.counter == this.goal;
+         if(this.counter == this.goal){
+             return true;
+         }
+         else{
+             return false;
+         }
     }
+
+    @Override
+    public void checkAdvancementAndFinish(){
+        if(isCompleted()){
+            this.finish();
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
 import com.devkrazy.citiesoffreedom.events.JobPickEvent;
 import com.devkrazy.citiesoffreedom.player.Job;
+import com.devkrazy.citiesoffreedom.player.missions.ComplexMission;
 import com.devkrazy.citiesoffreedom.player.missions.count.*;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
@@ -64,6 +65,8 @@ public class JobsListener implements Listener {
      * @param player the player
      */
     private void giveMinerMissions(CoFPlayer cofPlayer, Player player) {
+        cofPlayer.addMission(new ComplexMission("Mineur Fou",player,Material.STONE,10,10,MissionScope.JOB,false,new BlockBreakTask("Casser de la stone",player,3,MissionScope.JOB,Material.STONE)));
+        /*
         cofPlayer.addMission(new BlockBreakMission("Casser de la stone", "Casser le nombre de bloc de stone requis.", player, Material.STONE,
                 100, 10, 10000, MissionScope.JOB, Material.STONE));
         cofPlayer.addMission(new BlockBreakMission("Casser du minerai d'émeraude", "Casser le nombre de minerai d'émeraude requis.", player, Material.EMERALD_ORE,
@@ -84,16 +87,18 @@ public class JobsListener implements Listener {
                 100, 10, 30, MissionScope.JOB, Material.ANCIENT_DEBRIS));
         cofPlayer.addMission(new BlockBreakMission("Casser de l'obsidienne", "Casser le nombre de bloc d'obsidienne requis.", player, Material.OBSIDIAN,
                 100, 10, 50, MissionScope.JOB, Material.OBSIDIAN));
-        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en bois", "", player, Material.WOODEN_PICKAXE,
+        cofPlayer.addMission(new ItemBreakTask("Briser une pioche en bois", "", player, Material.WOODEN_PICKAXE,
                 100, 1, 1, MissionScope.JOB, Material.WOODEN_PICKAXE));
-        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en pierre", "", player, Material.STONE_PICKAXE,
+        cofPlayer.addMission(new ItemBreakTask("Briser une pioche en pierre", "", player, Material.STONE_PICKAXE,
                 200, 2, 1, MissionScope.JOB, Material.STONE_PICKAXE));
-        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en fer", "", player, Material.IRON_PICKAXE,
+        cofPlayer.addMission(new ItemBreakTask("Briser une pioche en fer", "", player, Material.IRON_PICKAXE,
                 300, 3, 1, MissionScope.JOB, Material.IRON_PICKAXE));
-        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en diamant", "", player, Material.DIAMOND_PICKAXE,
+        cofPlayer.addMission(new ItemBreakTask("Briser une pioche en diamant", "", player, Material.DIAMOND_PICKAXE,
                 500, 5, 1, MissionScope.JOB, Material.DIAMOND_PICKAXE));
-        cofPlayer.addMission(new ItemBreakMission("Briser une pioche en netherite", "", player, Material.NETHERITE_PICKAXE,
+        cofPlayer.addMission(new ItemBreakTask("Briser une pioche en netherite", "", player, Material.NETHERITE_PICKAXE,
                 1200, 12, 1, MissionScope.JOB, Material.NETHERITE_PICKAXE));
+
+         */
     }
 
     /**
@@ -103,25 +108,28 @@ public class JobsListener implements Listener {
      */
 
     private void giveSoldierMissions(CoFPlayer cofPlayer, Player player) {
+        /*
         cofPlayer.addMission(new EntitiesKillTask("Mobocide", "Tuer un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.SPIDER, EntityType.SKELETON, EntityType.CREEPER));
-        cofPlayer.addMission(new BlockPlaceMission("Poser des torches", "Poser le nombre de torche requis.", player, Material.TORCH,
+        cofPlayer.addMission(new BlockPlaceTask("Poser des torches", "Poser le nombre de torche requis.", player, Material.TORCH,
                 100, 10, 100, MissionScope.JOB, Material.TORCH));
-        cofPlayer.addMission(new EntityKillMission("Respect aux ancêtres", "Tuer le nombre de zombies requis.", player, Material.ZOMBIE_SPAWN_EGG,
+        cofPlayer.addMission(new EntityKillTask("Respect aux ancêtres", "Tuer le nombre de zombies requis.", player, Material.ZOMBIE_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.ZOMBIE));
-        cofPlayer.addMission(new EntityKillMission("Araknophobe", "Tuer le nombre de d'araignées requis.", player, Material.SPIDER_SPAWN_EGG,
+        cofPlayer.addMission(new EntityKillTask("Araknophobe", "Tuer le nombre de d'araignées requis.", player, Material.SPIDER_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.SPIDER));
-        cofPlayer.addMission(new EntityKillMission("Boss final des internets", "Tuer un wither.", player, Material.WITHER_SKELETON_SKULL,
+        cofPlayer.addMission(new EntityKillTask("Boss final des internets", "Tuer un wither.", player, Material.WITHER_SKELETON_SKULL,
                 1000, 100, 1, MissionScope.JOB, EntityType.WITHER));
-        cofPlayer.addMission(new EntityKillMission("Du calcium pour tout le monde", "Tuer le nombre de squelettes requis.", player, Material.SKELETON_SPAWN_EGG,
+        cofPlayer.addMission(new EntityKillTask("Du calcium pour tout le monde", "Tuer le nombre de squelettes requis.", player, Material.SKELETON_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.SKELETON));
-        cofPlayer.addMission(new EntityKillMission("Une espèce d'un autre monde", "Tuer le nombre de d'endermen requis.", player, Material.ENDERMAN_SPAWN_EGG,
+        cofPlayer.addMission(new EntityKillTask("Une espèce d'un autre monde", "Tuer le nombre de d'endermen requis.", player, Material.ENDERMAN_SPAWN_EGG,
                 100, 10, 20, MissionScope.JOB, EntityType.ENDERMAN));
         cofPlayer.addMission(new EntitiesTameTask("Défense déléguée", "Apprivoiser un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.WOLF, EntityType.POLAR_BEAR, EntityType.FOX, EntityType.CAT));
-        cofPlayer.addMission(new ItemConsumeMission("Monstre de puissance", "Consommer une potion de force II.", player,Material.POTION,2,
+        cofPlayer.addMission(new ItemConsumeTask("Monstre de puissance", "Consommer une potion de force II.", player,Material.POTION,2,
                 100, 1, MissionScope.JOB, PotionType.STRENGTH,2));
-        cofPlayer.addMission(new EntityKillMission("Traîtrise contrôlée", "Tuer un golem.", player,Material.IRON_INGOT,2,
+        cofPlayer.addMission(new EntityKillTask("Traîtrise contrôlée", "Tuer un golem.", player,Material.IRON_INGOT,2,
                 100,1,MissionScope.JOB, EntityType.IRON_GOLEM));
+
+         */
     }
 }

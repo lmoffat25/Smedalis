@@ -9,6 +9,7 @@ package com.devkrazy.citiesoffreedom.listeners;
 
 import com.devkrazy.citiesoffreedom.guis.guis.TeamsSelectionGUI;
 import com.devkrazy.citiesoffreedom.guis.guis.TeamsTeleportationGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsVotingGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,6 +37,10 @@ public class InteractListener implements Listener {
             }
             if (meta.displayName().toString().equals(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
                 TeamsTeleportationGUI.getInstance().open(player);
+                event.setCancelled(true);
+            }
+            if (meta.displayName().toString().equals(TeamsVotingGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
+                TeamsVotingGUI.getInstance().open(player);
                 event.setCancelled(true);
             }
         }

@@ -69,7 +69,8 @@ public class TeamsVotingGUI {
         // Populates the GUI with all the available teams
         int slot = 0;
         for (Team team : Team.values()) {
-            menu.setButton(slot, new GUIButton(team.getGuiItem()) {
+            ItemBuilder teamItemBuilder = new ItemBuilder(team.getGuiItem()).setLore(ChatColor.GRAY + "Votes : " + ChatColor.YELLOW + votesManager.getVotes(team));
+            menu.setButton(slot, new GUIButton(teamItemBuilder.build()) {
 
                 @Override
                 public void onClick() {

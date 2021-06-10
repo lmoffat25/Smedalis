@@ -7,8 +7,7 @@
 
 package com.devkrazy.citiesoffreedom.commands;
 
-import com.devkrazy.citiesoffreedom.guis.guis.JobsGUI;
-import com.devkrazy.citiesoffreedom.guis.guis.MissionsGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.JobsSelectionGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,7 +19,7 @@ public class JobsCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender  instanceof Player) {
             Player player = (Player) sender;
-            JobsGUI.getInstance().open(player);
+            JobsSelectionGUI.getInstance().open(player);
         }
         return true;
     }

@@ -17,14 +17,14 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class JobsGUI {
+public class JobsSelectionGUI {
 
-    private static JobsGUI instance = new JobsGUI();
+    private static JobsSelectionGUI instance = new JobsSelectionGUI();
 
     /*
     Constructor
     */
-    private JobsGUI(){
+    private JobsSelectionGUI(){
 
     }
 
@@ -33,9 +33,9 @@ public class JobsGUI {
      */
 
     /**
-     * @return the TeamsGUI's instance
+     * @return the TeamsSelectionGUI's instance
      */
-    public static JobsGUI getInstance() {
+    public static JobsSelectionGUI getInstance() {
         return instance;
     }
 

@@ -7,7 +7,9 @@
 
 package com.devkrazy.citiesoffreedom.commands;
 
-import com.devkrazy.citiesoffreedom.guis.guis.TeamsGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsSelectionGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsTeleportationGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsVotingGUI;
 import com.devkrazy.citiesoffreedom.player.Team;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
@@ -33,20 +35,33 @@ public class TeamCommand implements CommandExecutor {
             } else {
                 player.sendMessage(Component.text(ChatColor.GRAY + "Vous n'avez pas d'équipe."));
             }
-            if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("item")) { // /team item
-                    player.getInventory().addItem(TeamsGUI.getInstance().getOpener());
-                    player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de sélection d'équipe."));
+            if (args[0].equalsIgnoreCase("item")) {
+                if (args.length == 2) {
+                    if (args[1].equalsIgnoreCase("select")) {
+                        player.getInventory().addItem(TeamsSelectionGUI.getInstance().getOpener());
+                        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de sélection d'équipe."));
+                    }
+                    if (args[1].equalsIgnoreCase("tp")) {
+                        player.getInventory().addItem(TeamsTeleportationGUI.getInstance().getOpener());
+
+                        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de téléportation d'équipe."));
+                    }
+                    if (args[1].equalsIgnoreCase("vote")) {
+                        player.getInventory().addItem(TeamsVotingGUI.getInstance().getOpener());
+
+                        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de vote des équipes."));
+                    }
                 }
-                if (args[0].equalsIgnoreCase("open")) {
-                    TeamsGUI.getInstance().open(player);
-                    player.sendMessage(Component.text(ChatColor.GRAY + "Choisissez votre équipe."));
-                }
+            } else {
+                return false;
             }
-            return true;
+            if (args[0].equalsIgnoreCase("open")) {
+                TeamsSelectionGUI.getInstance().open(player);
+                player.sendMessage(Component.text(ChatColor.GRAY + "Choisissez votre équipe."));
+            }
         } else {
             sender.sendMessage("Vous devez être un joueur pour éxecuter cette commande.");
-            return true;
         }
+        return true;
     }
 }

@@ -31,7 +31,7 @@ public class MissionsGUI {
      */
 
     /**
-     * @return the TeamsGUI's instance
+     * @return the TeamsSelectionGUI's instance
      */
     public static MissionsGUI getInstance() {
         return instance;

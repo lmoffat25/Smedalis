@@ -16,6 +16,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 abstract public class Mission {
 
@@ -27,9 +28,10 @@ abstract public class Mission {
     private int emeraldsReward;
     private MissionScope missionScope;
     private String description;
+    boolean isChronological;
 
 
-    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,Task t) {
+    protected Mission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,boolean isChronological,Task... task) {
         this.name = name;
         this.description = description;
         this.player = player;
@@ -37,6 +39,8 @@ abstract public class Mission {
         this.xpReward = xpReward;
         this.emeraldsReward = emeraldsReward;
         this.missionScope = missionScope;
+        this.isChronological = isChronological;
+        this.taskList = (ArrayList<Task>) Arrays.asList(task);
     }
 
 
@@ -47,6 +51,8 @@ abstract public class Mission {
     public String getName() {
         return this.name;
     }
+
+    public ArrayList<Task> getTaskList(){return this.taskList;}
 
     public String getDescription() { return this.description;}
 
@@ -69,6 +75,20 @@ abstract public class Mission {
     public MissionScope getScope() {
         return this.missionScope;
     }
+
+    public Task getFirstTaskNotCompleted(){
+        boolean found = false;
+        int c = 0;
+        while(!found){
+            if(!taskList.get(c).isFinished()){
+                found = true;
+            }
+            else{
+                c++;
+            }
+        }
+        return taskList.get(c);
+    };
 
 
     /*

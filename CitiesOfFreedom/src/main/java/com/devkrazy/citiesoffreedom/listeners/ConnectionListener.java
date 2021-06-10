@@ -12,7 +12,6 @@ import com.devkrazy.citiesoffreedom.config.files.SettingsConfig;
 import com.devkrazy.citiesoffreedom.game.Countdown;
 import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
-import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
@@ -44,8 +43,8 @@ public class ConnectionListener implements Listener {
         }
 
         // Test //
-        cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", "Casser le nombre de poudre de redstone requis.", player, Material.REDSTONE,
-                100, 10, 10, MissionScope.PERSONAL, Material.REDSTONE_WIRE));
+        //cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", "Casser le nombre de poudre de redstone requis.", player, Material.REDSTONE,
+        //        100, 10, 10, MissionScope.PERSONAL, Material.REDSTONE_WIRE));
         // End Test //
     }
 

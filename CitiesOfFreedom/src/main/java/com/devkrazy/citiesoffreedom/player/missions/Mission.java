@@ -15,13 +15,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 abstract public class Mission {
 
     private String name;
-    private ArrayList<Task> taskList;
+    private List<Task> taskList;
     private Player player;
     private ItemStack guiItemStack;
     private int xpReward;
@@ -38,7 +38,7 @@ abstract public class Mission {
         this.emeraldsReward = emeraldsReward;
         this.missionScope = missionScope;
         this.isChronological = isChronological;
-        this.taskList = (ArrayList<Task>) Arrays.asList(task);
+        this.taskList = Arrays.asList(task);
     }
 
 
@@ -50,7 +50,9 @@ abstract public class Mission {
         return this.name;
     }
 
-    public ArrayList<Task> getTaskList(){return this.taskList;}
+    public List<Task> getTaskList() {
+        return this.taskList;
+    }
 
     protected ItemStack getGUIItem() {
         return this.guiItemStack;

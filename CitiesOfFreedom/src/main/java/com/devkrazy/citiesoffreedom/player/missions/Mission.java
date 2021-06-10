@@ -72,22 +72,6 @@ abstract public class Mission {
         return this.missionScope;
     }
 
-    public Task getFirstTaskNotCompleted(){
-
-        boolean found = false;
-        int c = 0;
-
-        while(!found){
-
-            if(!taskList.get(c).isFinished()){
-                found = true;
-            }
-            else{
-                c++;
-            }
-        }
-        return taskList.get(c);
-    };
 
 
     /*

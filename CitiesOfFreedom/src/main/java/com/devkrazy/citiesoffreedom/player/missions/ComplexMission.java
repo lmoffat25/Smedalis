@@ -13,6 +13,23 @@ public class ComplexMission extends Mission{
         super(name,player,guiMaterial,xpReward,emeraldsReward,missionScope,isChronological,t);
     }
 
+    public Task getFirstTaskNotCompleted(){
+
+        boolean found = false;
+        int c = 0;
+
+        while(!found){
+
+            if(!getTaskList().get(c).isFinished()){
+                found = true;
+            }
+            else{
+                c++;
+            }
+        }
+        return getTaskList().get(c);
+    };
+
     @Override
     public boolean isCompleted(){
         for(Task t : this.getTaskList()){

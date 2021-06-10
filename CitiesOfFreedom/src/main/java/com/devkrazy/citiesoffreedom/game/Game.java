@@ -81,19 +81,18 @@ public class Game {
      */
 
     /**
-     * Starts the game. If the game is already started does nothing.
+     * Starts the game. If the game has already started does nothing.
      */
     public void start() {
         if (this.getState() == GameState.WAITING) {
             this.setState(GameState.PLAYING);
             this.setPvpEnabled(true);
             Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
-                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.DARK_PURPLE + "DevKrazy & MarouanLaBagarre")));
+                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.YELLOW + "DevKrazy & MarouanLaBagarre")));
 
             // creates a calendar with the current time in the Europe/Paris timezone
             Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
-            rightNow.add(Calendar.SECOND, 20);
-
+            rightNow.add(Calendar.SECOND, 10);
             new Timer().schedule(new EndGameTask(), rightNow.getTime());
         }
     }

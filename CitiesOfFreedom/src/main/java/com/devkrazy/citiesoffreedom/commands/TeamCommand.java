@@ -9,6 +9,7 @@ package com.devkrazy.citiesoffreedom.commands;
 
 import com.devkrazy.citiesoffreedom.guis.guis.TeamsSelectionGUI;
 import com.devkrazy.citiesoffreedom.guis.guis.TeamsTeleportationGUI;
+import com.devkrazy.citiesoffreedom.guis.guis.TeamsVotingGUI;
 import com.devkrazy.citiesoffreedom.player.Team;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
@@ -45,7 +46,11 @@ public class TeamCommand implements CommandExecutor {
 
                         player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de téléportation d'équipe."));
                     }
+                    if (args[1].equalsIgnoreCase("vote")) {
+                        player.getInventory().addItem(TeamsVotingGUI.getInstance().getOpener());
 
+                        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez reçu l'item de vote des équipes."));
+                    }
                 }
             } else {
                 return false;

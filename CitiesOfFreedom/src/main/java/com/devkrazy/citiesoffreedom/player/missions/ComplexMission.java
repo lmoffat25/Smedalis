@@ -42,7 +42,7 @@ public class ComplexMission extends Mission{
 
     @Override
     public void processEvent(Event event){
-
+        /*process the event*/
         if(this.isChronological){
             /*Execute the process event of the first task not completed*/
             this.getFirstTaskNotCompleted().processEvent(event);
@@ -53,6 +53,8 @@ public class ComplexMission extends Mission{
                 t.processEvent(event);
             }
         }
+        /*check if all task are completed*/
+        this.checkAdvancementAndReward();
     }
     //TODO Change the gui representation
     @Override

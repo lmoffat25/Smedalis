@@ -86,15 +86,12 @@ abstract public class Mission {
      */
     private void finishAndReward() {
 
-        if(this.isCompleted()){
-
-            this.guiItemStack = new ItemBuilder(this.guiItemStack).addGlow().build();
-            ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
-            this.player.getInventory().addItem(builder.build());
-            // TODO: check if player's inventory is not full
-            this.player.giveExp(this.xpReward);
-            this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
-        }
+        this.guiItemStack = new ItemBuilder(this.guiItemStack).addGlow().build();
+        ItemBuilder builder = new ItemBuilder(Material.EMERALD, this.emeraldsReward);
+        this.player.getInventory().addItem(builder.build());
+        // TODO: check if player's inventory is not full
+        this.player.giveExp(this.xpReward);
+        this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
 
     }
     //TODO check if it's really needed, in my opinion not needed

@@ -29,7 +29,7 @@ public class ComplexMission extends Mission{
             }
         }
         return getTaskList().get(c);
-    };
+    }
 
     @Override
     public boolean isCompleted(){
@@ -63,7 +63,7 @@ public class ComplexMission extends Mission{
     //TODO Change the gui representation
     @Override
     public ItemStack buildGUIItem() {
-        String Lore;
+
         String description = "";
 
         for (Task t : this.getTaskList()){

@@ -20,7 +20,10 @@ public class ItemConsumeTask extends CountTask {
         this.potionType = potionType;
         this.level = level;
     }
-
+    @Override
+    public String getLore(){
+        return "Consommez de la " + this.potionType.name() + ". (" + this.getCounter() + "/"+this.getGoal()+")";
+    }
     /**
      * Processes a given event and updates the mission status if necessary.
      * @param event the event to process

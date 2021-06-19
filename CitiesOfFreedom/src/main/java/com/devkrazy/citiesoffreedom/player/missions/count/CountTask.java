@@ -67,6 +67,7 @@ abstract public class CountTask extends Task {
      */
     @Override
     public boolean isCompleted() {
+
          if(this.counter == this.goal){
              return true;
          }
@@ -82,4 +83,8 @@ abstract public class CountTask extends Task {
         }
     }
 
+    /*
+    Abstract method
+    */
+    abstract public String getLore();
 }

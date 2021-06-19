@@ -22,6 +22,11 @@ public class BlockBreakTask extends CountTask {
         this.blockType = blockType;
     }
 
+    @Override
+    public String getLore(){
+        return "Cassez de la " + this.blockType.name() + ". (" + this.getCounter() + "/"+this.getGoal()+")";
+    }
+
     /**
      * Processes a given event and updates the mission status if necessary.
      * @param event the event to process

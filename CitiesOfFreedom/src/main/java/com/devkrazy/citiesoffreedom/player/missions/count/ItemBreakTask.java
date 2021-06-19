@@ -22,6 +22,10 @@ public class ItemBreakTask extends CountTask {
         this.itemMaterial = itemMaterial;
     }
 
+    @Override
+    public String getLore(){
+        return "Cassez des " + this.itemMaterial.name() + ". (" + this.getCounter() + "/"+this.getGoal()+")";
+    }
     /**
      * Processes a given event and updates the mission status if necessary.
      * @param event the event to process

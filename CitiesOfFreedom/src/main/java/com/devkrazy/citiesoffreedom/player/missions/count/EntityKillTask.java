@@ -24,6 +24,10 @@ public class EntityKillTask extends CountTask {
     }
 
     @Override
+    public String getLore(){
+        return "Tuez des " + this.entityType.name() + ". (" + this.getCounter() + "/"+this.getGoal()+")";
+    }
+    @Override
     public void processEvent(Event event) {
         if (event instanceof EntityDeathEvent) {
             if (((EntityDeathEvent) event).getEntity().getType() == this.entityType) {

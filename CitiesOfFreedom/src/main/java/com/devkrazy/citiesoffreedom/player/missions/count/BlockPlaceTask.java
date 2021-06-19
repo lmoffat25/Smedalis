@@ -22,6 +22,10 @@ public class BlockPlaceTask extends CountTask {
         this.blockType = blockType;
     }
 
+    @Override
+    public String getLore(){
+        return "Placez de la " + this.blockType.name() + ". (" + this.getCounter() + "/"+this.getGoal()+")";
+    }
     /**
      * Processed a given event and updates the mission status if necessary.
      * @param event the event to process

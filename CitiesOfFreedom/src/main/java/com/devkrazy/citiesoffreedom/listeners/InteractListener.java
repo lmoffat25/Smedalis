@@ -31,17 +31,19 @@ public class InteractListener implements Listener {
             System.out.println(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName());
              */
 
-            if (meta.displayName().toString().compareTo(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName().toString()) == 0) {
-                TeamsSelectionGUI.getInstance().open(player);
-                event.setCancelled(true);
-            }
-            if (meta.displayName().toString().equals(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
-                TeamsTeleportationGUI.getInstance().open(player);
-                event.setCancelled(true);
-            }
-            if (meta.displayName().toString().equals(TeamsVotingGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
-                TeamsVotingGUI.getInstance().open(player);
-                event.setCancelled(true);
+            if (meta != null) {
+                if (meta.displayName().toString().compareTo(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName().toString()) == 0) {
+                    TeamsSelectionGUI.getInstance().open(player);
+                    event.setCancelled(true);
+                }
+                if (meta.displayName().toString().equals(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
+                    TeamsTeleportationGUI.getInstance().open(player);
+                    event.setCancelled(true);
+                }
+                if (meta.displayName().toString().equals(TeamsVotingGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
+                    TeamsVotingGUI.getInstance().open(player);
+                    event.setCancelled(true);
+                }
             }
         }
     }

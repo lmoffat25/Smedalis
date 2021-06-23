@@ -7,11 +7,11 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
+import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 

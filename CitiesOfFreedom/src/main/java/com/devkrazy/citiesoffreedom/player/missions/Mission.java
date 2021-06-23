@@ -1,12 +1,6 @@
-/*
- * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
- * This Mission.java file is a part of the Smedalis project.
- * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
- *
- */
-
 package com.devkrazy.citiesoffreedom.player.missions;
 
+import com.devkrazy.citiesoffreedom.player.missions.count.CountTask;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
@@ -18,7 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-abstract public class Mission {
+public class Mission{
+
 
     private String name;
     private List<Task> taskList;
@@ -30,7 +25,8 @@ abstract public class Mission {
     boolean isChronological;
 
 
-    protected Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope,boolean isChronological,Task... task) {
+    public Mission(String name, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, boolean isChronological, Task... t){
+
         this.name = name;
         this.player = player;
         this.guiItemStack = new ItemBuilder(guiMaterial, 1).setName(ChatColor.WHITE + this.name).build();
@@ -38,9 +34,8 @@ abstract public class Mission {
         this.emeraldsReward = emeraldsReward;
         this.missionScope = missionScope;
         this.isChronological = isChronological;
-        this.taskList = Arrays.asList(task);
+        this.taskList = Arrays.asList(t);
     }
-
 
     /*
     Getters
@@ -74,12 +69,6 @@ abstract public class Mission {
         return this.missionScope;
     }
 
-
-
-    /*
-    Methods
-     */
-
     /**
      * Gives the owner's mission the experience and emerald reward if the mission is completed; does nothing otherwise.
      * Marks the mission as finished.
@@ -94,7 +83,6 @@ abstract public class Mission {
         this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
 
     }
-    //TODO check if it's really needed, in my opinion not needed
 
     /**
      * Checks the mission advancement and rewards the player if the mission is completed.
@@ -106,24 +94,67 @@ abstract public class Mission {
         }
     }
 
+    public Task getFirstTaskNotCompleted(){
 
-    /*
-    Abstract
-     */
+        boolean found = false;
+        int c = 0;
 
-    /**
-     * Processed a given event and updates the mission status if necessary.
-     * @param event the event to process
-     */
-    abstract public void processEvent(Event event);
+        while(!found){
 
-    /**
-     * @return an itemstack to display the Mission's status in a GUI
-     */
-    abstract public ItemStack buildGUIItem();
+            if(!getTaskList().get(c).isFinished()){
+                found = true;
+            }
+            else{
+                c++;
+            }
+        }
+        return getTaskList().get(c);
+    }
 
-    /**
-     * @return true if the mission is completed; false otherwise
-     */
-    abstract public boolean isCompleted();
+    public boolean isCompleted(){
+        for(Task t : this.getTaskList()){
+            if(!t.isFinished()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void processEvent(Event event){
+
+        if(!this.isCompleted()) {
+
+            /*process the event*/
+            if (this.isChronological) {
+                /*Execute the process event of the first task not completed*/
+                this.getFirstTaskNotCompleted().processEvent(event);
+            } else {
+                /*Execute all the processEvent*/
+                for (Task t : this.getTaskList()) {
+                    t.processEvent(event);
+                }
+            }
+            /*check if all task are completed*/
+            this.checkAdvancementAndReward();
+        }
+    }
+    //TODO Change the gui representation
+
+    public ItemStack buildGUIItem() {
+
+        String description = "";
+
+        for (Task t : this.getTaskList()){
+            if(t instanceof CountTask){
+                description = description + ((CountTask) t).getLore();
+            }
+            else{
+                description = description + t.getDescription();
+            }
+
+        }
+        return new ItemBuilder(this.getGUIItem()).setLore("" + ChatColor.GRAY+description).build();
+    }
+
+
 }

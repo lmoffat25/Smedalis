@@ -8,13 +8,8 @@
 package com.devkrazy.citiesoffreedom.player.missions.count;
 
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
-import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.player.missions.Task;
-import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 abstract public class CountTask extends Task {
 

@@ -8,7 +8,6 @@
 package com.devkrazy.citiesoffreedom.player.missions;
 
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -88,7 +87,7 @@ abstract public class Mission {
         this.player.getInventory().addItem(builder.build());
         // TODO: check if player's inventory is not full
         this.player.giveExp(this.xpReward);
-        this.player.sendMessage(Component.text("" + ChatColor.GREEN + ChatColor.BOLD + "Vous avez réussi la mission " + this.name));
+        this.player.sendMessage("§a§bVous avez réussi la mission " + this.name);
     }
 
     /**

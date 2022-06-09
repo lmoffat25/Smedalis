@@ -7,8 +7,6 @@
 
 package com.devkrazy.citiesoffreedom.utils;
 
-import net.kyori.adventure.text.Component;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -24,8 +22,9 @@ public class ItemBuilder {
 
     /**
      * Constructs an ItemBuilder with a material and a name
+     *
      * @param material the material
-     * @param name the name that will be given to the item
+     * @param name     the name that will be given to the item
      */
     public ItemBuilder(Material material, String name) {
         this.itemStack = new ItemStack(material);
@@ -34,6 +33,7 @@ public class ItemBuilder {
 
     /**
      * Constructs an ItemBuilder from an existing itemstack.
+     *
      * @param itemStack the itemstack used to construct the ItemBuilder
      */
     public ItemBuilder(ItemStack itemStack) {
@@ -42,8 +42,9 @@ public class ItemBuilder {
 
     /**
      * Constructs an ItemBuilder with a material and a name
+     *
      * @param material the material
-     * @param amount the name that will be given to the item
+     * @param amount   the name that will be given to the item
      */
     public ItemBuilder(Material material, int amount) {
         this.itemStack = new ItemStack(material, amount);
@@ -58,47 +59,51 @@ public class ItemBuilder {
 
     /**
      * Sets the display name of the ItemBuilder.
-     * @return the updated ItemBuilder
+     *
      * @param name the name that will be given to the item
+     * @return the updated ItemBuilder
      */
     public ItemBuilder setName(String name) {
         ItemMeta meta = this.getMeta();
-        meta.displayName(Component.text(name));
+        meta.setDisplayName(name);
         this.itemStack.setItemMeta(meta);
         return this;
     }
 
     /**
      * Sets the lore of the ItemBuilder.
+     *
      * @param lore an array of Strings
      * @return the updated ItemBuilder
      */
     public ItemBuilder setLore(String... lore) {
         ItemMeta meta = this.getMeta();
-        List<Component> components = new ArrayList<>();
+        List<String> components = new ArrayList<>();
         for (String line : lore) {
             // converts each line of the lore into a TextComponent add adds it to the components list
-            components.add(Component.text(line));
+            components.add(line);
         }
-        meta.lore(components);
+        meta.setLore(components);
         this.itemStack.setItemMeta(meta);
         return this;
     }
 
     /**
      * Sets the lore of the ItemBuilder.
+     *
      * @param lore a list of components
      * @return the updated ItemBuilder
      */
-    public ItemBuilder setLore(List<Component> lore) {
+    public ItemBuilder setLore(List<String> lore) {
         ItemMeta meta = this.getMeta();
-        meta.lore(lore);
+        meta.setLore(lore);
         this.itemStack.setItemMeta(meta);
         return this;
     }
 
     /**
      * Adds new lines to the lore of the ItemBuilder.
+     *
      * @param lore a list of Strings
      * @return the updated ItemBuilder
      */
@@ -106,13 +111,13 @@ public class ItemBuilder {
         ItemMeta meta = this.getMeta();
 
         // initializes a new ArrayList if the lore is null
-        List<Component> components = meta.lore() == null ? new ArrayList<>() : meta.lore();
+        List<String> components = meta.getLore() == null ? new ArrayList<>() : meta.getLore();
 
         for (String line : lore) {
             // converts each line of the lore into a TextComponent add adds it to the components list
-            components.add(Component.text(line));
+            components.add(line);
         }
-        meta.lore(components);
+        meta.setLore(components);
         this.itemStack.setItemMeta(meta);
         return this;
     }
@@ -120,6 +125,7 @@ public class ItemBuilder {
 
     /**
      * Adds the enchantment glow effect to the item without actually enchanting it.
+     *
      * @return the updated ItemBuilder
      */
     public ItemBuilder addGlow() {
@@ -139,6 +145,7 @@ public class ItemBuilder {
 
     /**
      * Builds a new ItemStack based on the ItemBuilder attributes.
+     *
      * @return the new ItemStack
      */
     public ItemStack build() {

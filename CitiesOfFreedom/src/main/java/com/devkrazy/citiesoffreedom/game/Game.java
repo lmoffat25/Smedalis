@@ -9,12 +9,13 @@ package com.devkrazy.citiesoffreedom.game;
 
 
 import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+import java.util.Timer;
 
 /**
  * A singleton class representing the game. It can manage its state, the pvp and many other things related
@@ -87,8 +88,9 @@ public class Game {
         if (this.getState() == GameState.WAITING) {
             this.setState(GameState.PLAYING);
             this.setPvpEnabled(true);
-            Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.GOLD + "CitiesOfFreedom"),
-                    Component.text(ChatColor.GRAY + "Développé par " + ChatColor.YELLOW + "DevKrazy & MarouanLaBagarre")));
+
+            Bukkit.getOnlinePlayers().forEach(player ->
+                    player.sendTitle(ChatColor.GOLD + "CitiesOfFreedom", ChatColor.GRAY + "Développé par " + ChatColor.YELLOW + "DevKrazy & _Rolyn", 20, 60, 20));
 
             // creates a calendar with the current time in the Europe/Paris timezone
             Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
@@ -104,8 +106,8 @@ public class Game {
         if (this.getState() == GameState.PLAYING) {
             this.setState(GameState.FINISHED);
             this.setPvpEnabled(false);
-            Bukkit.getServer().showTitle(Title.title(Component.text(ChatColor.RED + "Partie terminée."),
-                    Component.text(ChatColor.GRAY + "Votez pour votre ville préférée.")));
+            Bukkit.getOnlinePlayers().forEach(player ->
+                    player.sendTitle(ChatColor.RED + "Partie terminée.", ChatColor.GRAY + "Votez pour votre ville préférée.", 20, 60, 20));
         }
     }
 }

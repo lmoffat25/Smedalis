@@ -7,7 +7,6 @@
 
 package com.devkrazy.citiesoffreedom.game;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -66,11 +65,11 @@ abstract public class Countdown {
      */
     public void start() {
 
-        Bukkit.getServer().sendMessage(Component.text("START"));
+        Bukkit.getServer().broadcastMessage("START");
 
 
         if (hasStarted()) {
-            Bukkit.getServer().sendMessage(Component.text(ChatColor.GOLD + "Did not start the countdown, it was already running or queued."));
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Did not start the countdown, it was already running or queued.");
             return;
         }
 
@@ -96,7 +95,7 @@ abstract public class Countdown {
     private void displayTime() {
         // TODO: check all cases
         if (this.remainingTime != 0) {
-            Bukkit.getServer().sendMessage(Component.text(ChatColor.RED + "Fin du countdown dans " + this.remainingTime + "."));
+            Bukkit.getServer().broadcastMessage(ChatColor.RED + "Fin du countdown dans " + this.remainingTime + ".");
         }
     }
 

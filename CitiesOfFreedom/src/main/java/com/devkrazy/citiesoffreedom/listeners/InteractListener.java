@@ -26,21 +26,21 @@ public class InteractListener implements Listener {
         if (item != null) {
             ItemMeta meta = item.getItemMeta();
             /*
-            System.out.println(meta.displayName());
-            System.out.println(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName());
-            System.out.println(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName());
+            System.out.println(meta.getDisplayName());
+            System.out.println(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().getDisplayName());
+            System.out.println(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().getDisplayName());
              */
 
             if (meta != null) {
-                if (meta.displayName().toString().compareTo(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().displayName().toString()) == 0) {
+                if (meta.getDisplayName().toString().compareTo(TeamsSelectionGUI.getInstance().getOpener().getItemMeta().getDisplayName().toString()) == 0) {
                     TeamsSelectionGUI.getInstance().open(player);
                     event.setCancelled(true);
                 }
-                if (meta.displayName().toString().equals(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
+                if (meta.getDisplayName().toString().equals(TeamsTeleportationGUI.getInstance().getOpener().getItemMeta().getDisplayName().toString())) {
                     TeamsTeleportationGUI.getInstance().open(player);
                     event.setCancelled(true);
                 }
-                if (meta.displayName().toString().equals(TeamsVotingGUI.getInstance().getOpener().getItemMeta().displayName().toString())) {
+                if (meta.getDisplayName().toString().equals(TeamsVotingGUI.getInstance().getOpener().getItemMeta().getDisplayName().toString())) {
                     TeamsVotingGUI.getInstance().open(player);
                     event.setCancelled(true);
                 }

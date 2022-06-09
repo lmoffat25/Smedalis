@@ -10,11 +10,10 @@ package com.devkrazy.citiesoffreedom.listeners;
 import com.devkrazy.citiesoffreedom.config.files.SettingsConfig;
 import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
-import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
-import net.kyori.adventure.text.Component;
+import com.devkrazy.citiesoffreedom.player.missions.count.BlockBreakMission;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -36,7 +35,7 @@ public class ConnectionListener implements Listener {
         Player player = event.getPlayer();
         CoFPlayer cofPlayer = manager.createCoFPlayer(player);
 
-        Bukkit.getServer().sendMessage(Component.text("JOUEURS MIN POUR START " + settings.getMinimumPlayers()));
+        Bukkit.getServer().broadcastMessage("JOUEURS MIN POUR START " + settings.getMinimumPlayers());
         if (onlinePlayersAmount == settings.getMinimumPlayers() - 1 && game.getState() == GameState.WAITING) {
             game.getGameStartCountdown().start();
         }

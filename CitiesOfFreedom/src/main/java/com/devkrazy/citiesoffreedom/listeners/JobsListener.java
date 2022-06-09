@@ -7,25 +7,22 @@
 
 package com.devkrazy.citiesoffreedom.listeners;
 
+import com.devkrazy.citiesoffreedom.events.JobPickEvent;
 import com.devkrazy.citiesoffreedom.game.Game;
 import com.devkrazy.citiesoffreedom.game.GameState;
-import com.devkrazy.citiesoffreedom.events.JobPickEvent;
-import com.devkrazy.citiesoffreedom.player.Job;
-import com.devkrazy.citiesoffreedom.player.missions.count.*;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
+import com.devkrazy.citiesoffreedom.player.Job;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
+import com.devkrazy.citiesoffreedom.player.missions.count.*;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
 import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameMission;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 public class JobsListener implements Listener {
@@ -41,7 +38,7 @@ public class JobsListener implements Listener {
         if (game.getState() != GameState.WAITING) {
             // prevents the player to change job if the game has started
             event.setCancelled(true);
-            player.sendMessage(Component.text(ChatColor.RED + "Vous ne pouvez plus changer de métier."));
+            player.sendMessage(ChatColor.RED + "Vous ne pouvez plus changer de métier.");
             // TODO: set a default job
             return;
         }
@@ -56,8 +53,8 @@ public class JobsListener implements Listener {
             giveSoldierMissions(cofPlayer, player);
         }
 
-        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi le métier " +
-                ChatColor.of("#2c596e") + job.getName() + ChatColor.GRAY + "."));
+        player.sendMessage(ChatColor.GRAY + "Vous avez choisi le métier " +
+                ChatColor.of("#2c596e") + job.getName() + ChatColor.GRAY + ".");
     }
 
     /**

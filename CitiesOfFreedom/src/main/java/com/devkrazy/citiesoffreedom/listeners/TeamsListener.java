@@ -13,7 +13,6 @@ import com.devkrazy.citiesoffreedom.game.GameState;
 import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.Team;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,13 +31,13 @@ public class TeamsListener implements Listener {
         if (game.getState() != GameState.WAITING) {
             // prevents the player to change team if the game has started
             event.setCancelled(true);
-            player.sendMessage(Component.text(ChatColor.RED + "Vous ne pouvez plus changer d'équipe."));
+            player.sendMessage(ChatColor.RED + "Vous ne pouvez plus changer d'équipe.");
             return;
         }
 
         cofPlayer.setTeam(team);
-        player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez choisi l'équipe " +
-                team.getColor() + team.getName() + ChatColor.GRAY + "."));
+        player.sendMessage(ChatColor.GRAY + "Vous avez choisi l'équipe " +
+                team.getColor() + team.getName() + ChatColor.GRAY + ".");
 
     }
 }

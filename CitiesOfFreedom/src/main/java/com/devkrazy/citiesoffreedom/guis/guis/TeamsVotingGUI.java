@@ -7,7 +7,6 @@
 
 package com.devkrazy.citiesoffreedom.guis.guis;
 
-import com.devkrazy.citiesoffreedom.config.files.TeamsConfig;
 import com.devkrazy.citiesoffreedom.game.VotesManager;
 import com.devkrazy.citiesoffreedom.guis.GUIButton;
 import com.devkrazy.citiesoffreedom.guis.GUIMenu;
@@ -15,7 +14,6 @@ import com.devkrazy.citiesoffreedom.player.CoFPlayer;
 import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.Team;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
-import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -77,12 +75,12 @@ public class TeamsVotingGUI {
                     if (votesManager.isVotingEnabled() == true) {
                         if (cofPlayer.getTeam() != team) {
                             votesManager.addVote(player, team);
-                            player.sendMessage(Component.text(ChatColor.GRAY + "Vous avez voté pour l'équipe " + team.getColoredName()));
+                            player.sendMessage(ChatColor.GRAY + "Vous avez voté pour l'équipe " + team.getColoredName());
                         } else { // player cannot vote for its own team
-                            player.sendMessage(Component.text(ChatColor.RED + "Vous ne pouvez pas voter pour votre équipe."));
+                            player.sendMessage(ChatColor.RED + "Vous ne pouvez pas voter pour votre équipe.");
                         }
                     } else { // player cannot vote for its own team
-                        player.sendMessage(Component.text(ChatColor.RED + "Les votes sont désactivés pour le moment."));
+                        player.sendMessage(ChatColor.RED + "Les votes sont désactivés pour le moment.");
                     }
                     player.closeInventory();
                 }

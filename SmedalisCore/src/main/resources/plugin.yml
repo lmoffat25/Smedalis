@@ -1,6 +1,6 @@
 name: SmedalisCore
-authors: [DevKrazy]
+authors: [DevKrazy, _Rolyn]
 description: Composants essentiels du network Smedalis.
 main: com.devkrazy.smedaliscore.SmedalisCore
 version: 0.1
-api-version: 1.16
+api-version: 1.18

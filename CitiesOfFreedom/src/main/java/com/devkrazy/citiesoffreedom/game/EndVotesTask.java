@@ -8,8 +8,6 @@
 package com.devkrazy.citiesoffreedom.game;
 
 import com.devkrazy.citiesoffreedom.player.Team;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -23,8 +21,8 @@ public class EndVotesTask extends TimerTask {
         votesManager.endVotingSession();
         Team winner = votesManager.getWinningTeam();
 
-        Bukkit.getServer().showTitle(Title.title(Component.text(winner.getColor() + "Équipe victorieuse : " + winner.getColoredName()),
-                Component.text(ChatColor.GRAY + "Merci d'avoir joué !")));
+        Bukkit.getOnlinePlayers().forEach(player ->
+                player.sendTitle(winner.getColor() + "Équipe victorieuse : " + winner.getColoredName(), ChatColor.GRAY + "Merci d'avoir joué !", 20, 60, 20));
 
         // TODO: start countdown before stopping server
     }

@@ -11,8 +11,6 @@ import com.devkrazy.citiesoffreedom.player.missions.Mission;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.utils.ItemBuilder;
 import com.devkrazy.citiesoffreedom.utils.StringUtils;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,7 +32,7 @@ abstract public class ListMission<T> extends Mission {
     private List<T> completedItems;
 
     protected ListMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, T... initialItems) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
+        super(name, description, player, guiMaterial, xpReward, emeraldsReward, missionScope);
         this.remainingItems = new LinkedList<>(Arrays.asList(initialItems)); // linked list for faster remove
         this.completedItems = new ArrayList<>();
     }
@@ -46,6 +44,7 @@ abstract public class ListMission<T> extends Mission {
 
     /**
      * Marks an item of the mission as completed. If the missions does not contain this item does nothing.
+     *
      * @param item the item we want to mark as completed
      */
     public void completeItem(T item) {
@@ -67,8 +66,8 @@ abstract public class ListMission<T> extends Mission {
     @Override
     public ItemStack buildGUIItem() {
         ItemBuilder builder = new ItemBuilder(this.getGUIItem());
-        List<Component> lore = new ArrayList<>();
-        lore.add(Component.text("" + ChatColor.GRAY + this.getDescription()));
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.GRAY + this.getDescription());
 
         for (Object item : this.remainingItems) {
             lore.add(format(item, ChatColor.RED));
@@ -83,12 +82,13 @@ abstract public class ListMission<T> extends Mission {
 
     /**
      * Formats a given item to a TextComponent. The returned TextComponent can then be added to the lore
-     * @param item the item to format
+     *
+     * @param item  the item to format
      * @param color the color of the resulting TextComponent
      * @return
      */
-    private TextComponent format(Object item, ChatColor color) {
-        return Component.text(color + " - " + StringUtils.capitalize(item.toString()));
+    private String format(Object item, ChatColor color) {
+        return color + " - " + StringUtils.capitalize(item.toString());
     }
 
     /**

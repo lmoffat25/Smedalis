@@ -9,7 +9,6 @@ package com.devkrazy.citiesoffreedom.guis;
 
 import com.devkrazy.citiesoffreedom.CitiesOfFreedom;
 import com.devkrazy.citiesoffreedom.listeners.GUIListener;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -30,7 +29,7 @@ public class GUIMenu {
     public GUIMenu(String name, int rows) {
         this.name = name;
         this.rows = rows;
-        this.inventory = Bukkit.createInventory(null, rows * 9, Component.text(name));
+        this.inventory = Bukkit.createInventory(null, rows * 9, name);
     }
 
     /**
@@ -77,7 +76,7 @@ public class GUIMenu {
     public void setName(String name) {
         this.name = name;
         List<HumanEntity> viewers = inventory.getViewers();
-        this.inventory = Bukkit.createInventory(null, rows * 9, Component.text(name));
+        this.inventory = Bukkit.createInventory(null, rows * 9, name);
         pack();
         viewers.forEach(player -> open((Player) player));
     }

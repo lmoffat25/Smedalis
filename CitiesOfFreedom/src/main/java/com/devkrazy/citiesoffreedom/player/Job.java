@@ -19,7 +19,8 @@ import org.bukkit.inventory.ItemStack;
 public enum Job {
 
     MINER("Mineur", Material.STONE_PICKAXE),
-    SOLDIER("Soldat", Material.STONE_SWORD);
+    SOLDIER("Soldat", Material.STONE_SWORD),
+    Farmer("Paysan", Material.STONE_HOE);
 
     private String name;
     private Material guiMaterial;

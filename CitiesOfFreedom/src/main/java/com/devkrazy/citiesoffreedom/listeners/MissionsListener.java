@@ -59,4 +59,15 @@ public class MissionsListener implements Listener {
         cofPlayer.processEvent(event);
 
     }
+
+    @EventHandler
+    public void onCraft(CraftItemEvent event) {
+
+        Player player = (Player) event.getWhoClicked();
+        CoFPlayer cofPlayer = CoFPlayersManager.getInstance().getCoFPlayer(player);
+
+        if (mission instanceof ItemCraftMission) {
+            mission.processEvent(event);
+        }
+    }
 }

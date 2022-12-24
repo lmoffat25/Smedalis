@@ -52,6 +52,13 @@ public class JobsListener implements Listener {
         if (job == Job.SOLDIER) {
             giveSoldierMissions(cofPlayer, player);
         }
+        if (job == Job.FARMER) {
+            giveFarmerMissions(cofPlayer, player);
+        }
+        if (job == Job.ForgeMagician) {
+            giveForgeMagicianMissions(cofPlayer, player);
+        }
+
 
         player.sendMessage(ChatColor.GRAY + "Vous avez choisi le métier " +
                 ChatColor.of("#2c596e") + job.getName() + ChatColor.GRAY + ".");
@@ -121,5 +128,25 @@ public class JobsListener implements Listener {
                 100, 1, MissionScope.JOB, PotionType.STRENGTH,2));
         cofPlayer.addMission(new EntityKillMission("Traîtrise contrôlée", "Tuer un golem.", player,Material.IRON_INGOT,2,
                 100,1,MissionScope.JOB, EntityType.IRON_GOLEM));
+    }
+
+    /**
+     * Gives all the Famer missions to a player and its associated cofPlayer.
+     * @param cofPlayer the associated cofPlayer
+     * @param player the player
+     */
+    private void giveFarmerMissions(CoFPlayer cofPlayer, Player player) {
+       cofPlayer.addMission(new ItemCraftMission("Fabriquer des épées en diamant", "Fabriquer le nombre d'épées en diamant requis.", player, Material.DIAMOND_SWORD,
+                100, 10, 50, MissionScope.JOB, Material.DIAMOND_SWORD));
+
+    }
+
+    /**
+     * Gives all the ForgeMagician missions to a player and its associated cofPlayer.
+     * @param cofPlayer the associated cofPlayer
+     * @param player the player
+     */
+    private void giveForgeMagicianMissions(CoFPlayer cofPlayer, Player player) {
+       
     }
 }

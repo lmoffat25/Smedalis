@@ -4,6 +4,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 
+/* Adds a mission that requires to craft a list of items */
 public class CraftItemsMission extends ListMission<Material> {
 
     public CraftItemsMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, MissionScope missionScope, Material... initialItems) {

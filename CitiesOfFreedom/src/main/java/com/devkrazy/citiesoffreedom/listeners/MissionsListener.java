@@ -66,8 +66,51 @@ public class MissionsListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         CoFPlayer cofPlayer = CoFPlayersManager.getInstance().getCoFPlayer(player);
 
-        if (mission instanceof ItemCraftMission) {
+        if (mission instanceof CraftItemMission) {
             mission.processEvent(event);
         }
     }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        CoFPlayer cofPlayer = CoFPlayersManager.getInstance().getCoFPlayer(player);
+        if (mission instanceof PlayerMoveMission) {
+            // Process the mission
+            mission.processEvent(event);
+        }
+    }
+
+    @EventHandler
+    public void onCraft(CraftItemsEvent event) {
+        Player player = (Player) event.getWhoClicked();
+        CoFPlayer cofPlayer = CoFPlayersManager.getInstance().getCoFPlayer(player);
+        if (mission instanceof ItemCraftMission) {
+            // Process the mission
+            mission.processEvent(event);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+        CoFPlayer cofPlayer = CoFPlayersManager.getInstance().getCoFPlayer(player);
+        Entity entity = event.getRightClicked();
+        if (mission instanceof NPCMoveMission && ((NPCMoveMission) mission).isCorrectNPC(entity)) {
+            // Process the mission
+            mission.processEvent(event);
+        }
+    }
+
+
+    @EventHandler
+    public void onEntitySpawn(EntitySpawnEvent event) {
+        CoFPlayersManager manager = CoFPlayersManager.getInstance();
+        CoFPlayer cofPlayer = manager.getCoFPlayer(event.getPlayer());
+        if (mission instanceof SpawnMobListMission) {
+            mission.processEvent(event);
+        }
+    }
+
+
 }

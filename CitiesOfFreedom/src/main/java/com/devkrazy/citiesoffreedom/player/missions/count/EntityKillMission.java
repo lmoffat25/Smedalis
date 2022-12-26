@@ -17,19 +17,25 @@ import org.bukkit.event.entity.EntityDeathEvent;
 public class EntityKillMission extends CountMission {
 
     private EntityType entityType;
+    private Material weapon;
 
-    public EntityKillMission(String name,String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, EntityType entityType) {
-        super(name,description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
+    public EntityKillMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, EntityType entityType, Material weapon) {
+        super(name, description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
         this.entityType = entityType;
+        this.weapon = weapon;
     }
 
     @Override
     public void processEvent(Event event) {
         if (event instanceof EntityDeathEvent) {
-            if (((EntityDeathEvent) event).getEntity().getType() == this.entityType) {
-                this.incrementCounterOf(1);
-                this.checkAdvancementAndReward();
+            EntityDeathEvent deathEvent = (EntityDeathEvent) event;
+            if (deathEvent.getEntity().getType() == this.entityType) {
+                if (this.weapon == null || deathEvent.getEntity().getKiller().getInventory().getItemInMainHand().getType() == this.weapon) {
+                    this.incrementCounterOf(1);
+                    this.checkAdvancementAndReward();
+                }
             }
         }
     }
 }
+

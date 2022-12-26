@@ -108,6 +108,7 @@ public class JobsListener implements Listener {
      * @param player the player
      */
     private void giveSoldierMissions(CoFPlayer cofPlayer, Player player) {
+
         cofPlayer.addMission(new EntitiesKillMission("Mobocide", "Tuer un mob de chacun des types suivants.", player, Material.DIAMOND_SWORD,
                 100, 10, MissionScope.JOB, EntityType.SPIDER, EntityType.SKELETON, EntityType.CREEPER));
         cofPlayer.addMission(new BlockPlaceMission("Poser des torches", "Poser le nombre de torche requis.", player, Material.TORCH,
@@ -128,7 +129,9 @@ public class JobsListener implements Listener {
                 100, 1, MissionScope.JOB, PotionType.STRENGTH,2));
         cofPlayer.addMission(new EntityKillMission("Traîtrise contrôlée", "Tuer un golem.", player,Material.IRON_INGOT,2,
                 100,1,MissionScope.JOB, EntityType.IRON_GOLEM));
+
     }
+
 
     /**
      * Gives all the Famer missions to a player and its associated cofPlayer.
@@ -136,8 +139,17 @@ public class JobsListener implements Listener {
      * @param player the player
      */
     private void giveFarmerMissions(CoFPlayer cofPlayer, Player player) {
+
        cofPlayer.addMission(new ItemCraftMission("Fabriquer des épées en diamant", "Fabriquer le nombre d'épées en diamant requis.", player, Material.DIAMOND_SWORD,
                 100, 10, 50, MissionScope.JOB, Material.DIAMOND_SWORD));
+
+        cofPlayer.addMission(new NPCMoveMission("Escorter le PNJ", "Escorter le PNJ aux coordonnées cibles.", player, Material.MINECART,
+                100, 10, 50, MissionScope.JOB, "NPCName", "CoordX", "CoordY", "CoordZ"));
+
+
+        Material[] itemsToCraft = {Material.GOLD_BLOCK, Material.DIAMOND_BLOCK, Material.OBSIDIAN};
+        cofPlayer.addMission(new CraftItemsMission("Fabriquer des blocs", "Fabriquer les blocs spécifiés.", player, Material.GOLD_BLOCK,
+                100, 10, MissionScope.JOB, blocksToCraft));
 
     }
 

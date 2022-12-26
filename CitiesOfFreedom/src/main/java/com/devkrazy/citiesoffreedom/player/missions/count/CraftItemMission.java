@@ -5,11 +5,11 @@ import org.bukkit.event.Event;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class ItemCraftMission extends CountMission {
+public class CraftItemMission extends CountMission {
 
     private Material itemType;
 
-    public ItemCraftMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemType) {
+    public CraftItemMission(String name, String description, Player player, Material guiMaterial, int xpReward, int emeraldsReward, int goal, MissionScope missionScope, Material itemType) {
         super(name, description, player, guiMaterial, xpReward, emeraldsReward, goal, missionScope);
         this.itemType = itemType;
     }

@@ -29,7 +29,7 @@ public class Game {
     private boolean pvpEnabled;
     private GameState state;
 
-    private Countdown gameStartCountdown = new Countdown(1290000, CitiesOfFreedom.getInstance()) {
+    private Countdown gameStartCountdown = new Countdown(5, CitiesOfFreedom.getInstance()) {
         @Override
         protected void onEnd() {
             Game.getInstance().start();
@@ -94,7 +94,7 @@ public class Game {
 
             // creates a calendar with the current time in the Europe/Paris timezone
             Calendar rightNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris"));
-            rightNow.add(Calendar.SECOND, 10);
+            rightNow.add(Calendar.SECOND, 1290000);
             new Timer().schedule(new EndGameTask(), rightNow.getTime());
         }
     }

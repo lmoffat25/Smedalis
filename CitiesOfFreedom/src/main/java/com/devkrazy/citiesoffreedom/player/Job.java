@@ -20,7 +20,8 @@ public enum Job {
 
     MINER("Mineur", Material.STONE_PICKAXE),
     SOLDIER("Soldat", Material.STONE_SWORD),
-    Farmer("Paysan", Material.STONE_HOE);
+    FARMER("Paysan", Material.STONE_HOE),
+    FORGEMAGICIAN("ForgeMage", Material.STONE_HOE);
 
     private String name;
     private Material guiMaterial;

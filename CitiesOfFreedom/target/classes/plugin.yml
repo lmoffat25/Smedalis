@@ -2,7 +2,7 @@ name: CitiesOfFreedom
 authors: [DevKrazy, _Rolyn]
 description: Jeu CitiesOfFreedom du network Smedalis.
 main: com.devkrazy.citiesoffreedom.CitiesOfFreedom
-version: 0.1
+version: 0.2
 api-version: 1.18
 commands:
   team:

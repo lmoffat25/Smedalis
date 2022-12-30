@@ -27,8 +27,8 @@ abstract public class Countdown {
     private Plugin plugin;
 
     public Countdown(int initialTime, Plugin plugin) {
-        this.INITIAL_TIME = 1296000;
-        this.remainingTime = 1296000;
+        this.INITIAL_TIME = initialTime;
+        this.remainingTime = initialTime;
         this.plugin = plugin;
     }
 
@@ -39,7 +39,7 @@ abstract public class Countdown {
      */
     protected void onCount(int currentTime) {
         // TODO: add a boolean to display time
-        // this.displayTime();
+        this.displayTime();
     }
 
     /**

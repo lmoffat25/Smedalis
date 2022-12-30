@@ -29,7 +29,7 @@ public class Game {
     private boolean pvpEnabled;
     private GameState state;
 
-    private Countdown gameStartCountdown = new Countdown(10, CitiesOfFreedom.getInstance()) {
+    private Countdown gameStartCountdown = new Countdown(1290000, CitiesOfFreedom.getInstance()) {
         @Override
         protected void onEnd() {
             Game.getInstance().start();

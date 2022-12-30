@@ -42,6 +42,7 @@ public class ConnectionListener implements Listener {
 
         SettingsConfig.getInstance().setLocation(player.getLocation());
         SettingsConfig.getInstance().getCustomConfig().save();
+        
 
         // Test //
         cofPlayer.addMission(new BlockBreakMission("Casser de la redstone", "Casser le nombre de poudre de redstone requis.", player, Material.REDSTONE,
@@ -52,10 +53,10 @@ public class ConnectionListener implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        manager.deleteCoFPlayer(player);
+        // manager.deleteCoFPlayer(player);
 
         if (onlinePlayersAmount <= settings.getMinimumPlayers()) {
-            game.getGameStartCountdown().reset();
+            // game.getGameStartCountdown().reset();
         }
     }
 }

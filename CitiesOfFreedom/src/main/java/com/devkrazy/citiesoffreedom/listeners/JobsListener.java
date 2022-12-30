@@ -35,11 +35,11 @@ public class JobsListener implements Listener {
         cofPlayer.removeJobMissions();
 
         if (game.getState() != GameState.WAITING) {
-            // prevents the player to change job if the game has started
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "Vous ne pouvez plus changer de métier.");
-            // TODO: set a default job
-            return;
+                // prevents the player to change job if the game has started
+                event.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "Vous ne pouvez plus changer de métier.");
+                // TODO: set a default job
+                return;
         }
 
         Job job = event.getJob();

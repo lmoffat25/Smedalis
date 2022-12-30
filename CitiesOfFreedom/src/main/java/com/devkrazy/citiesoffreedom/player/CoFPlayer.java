@@ -12,7 +12,18 @@ import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import java.io.FileNotFoundException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +35,23 @@ public class CoFPlayer {
     private Chest chest;
     private Location spawnPoint;
     private Team team;
+
+    /**
+     * Saves this CoFPlayer's data to a JSON file.
+     * @param filePath the path of the file to save to
+     */
+    public void saveToFile(String filePath) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(this);
+        try {
+            FileWriter writer = new FileWriter(filePath);
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public CoFPlayer() {

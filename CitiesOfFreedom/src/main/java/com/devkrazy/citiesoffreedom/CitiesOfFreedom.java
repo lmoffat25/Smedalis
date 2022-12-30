@@ -32,6 +32,7 @@ public class CitiesOfFreedom extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new TeamsListener(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new EntitiesListeners(), instance);
         Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), instance);
+        // Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), instance);
 
 
         // register commands
@@ -39,7 +40,6 @@ public class CitiesOfFreedom extends JavaPlugin {
         instance.getCommand("missions").setExecutor(new MissionsCommand());
         instance.getCommand("jobs").setExecutor(new JobsCommand());
         instance.getCommand("game").setExecutor(new GameCommand());
-
 
         Bukkit.getLogger().info("CitiesOfFreedom enabled !");
     }

@@ -33,7 +33,9 @@ public class PlayerMovedMission extends CountMission {
     public void processEvent(Event event) {
         if (event instanceof PlayerMoveEvent) {
             PlayerMoveEvent moveEvent = (PlayerMoveEvent) event;
+            // Check if the player has moved within the radius of the target coordinates
             if (Math.abs(moveEvent.getTo().getBlockX() - targetX) <= radius && Math.abs(moveEvent.getTo().getBlockY() - targetY) <= radius && Math.abs(moveEvent.getTo().getBlockZ() - targetZ) <= radius) {
+                // Check if the player has already been counted towards this mission
                 this.incrementCounterOf(1);
                 this.checkAdvancementAndReward();
             }

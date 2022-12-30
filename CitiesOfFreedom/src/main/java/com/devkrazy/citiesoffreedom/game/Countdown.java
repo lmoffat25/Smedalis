@@ -39,7 +39,7 @@ abstract public class Countdown {
      */
     protected void onCount(int currentTime) {
         // TODO: add a boolean to display time
-        this.displayTime();
+        // this.displayTime();
     }
 
     /**

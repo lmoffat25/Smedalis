@@ -15,8 +15,7 @@ import com.devkrazy.citiesoffreedom.player.CoFPlayersManager;
 import com.devkrazy.citiesoffreedom.player.Job;
 import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import com.devkrazy.citiesoffreedom.player.missions.count.*;
-import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesKillMission;
-import com.devkrazy.citiesoffreedom.player.missions.list.EntitiesTameMission;
+import com.devkrazy.citiesoffreedom.player.missions.list.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -55,7 +54,7 @@ public class JobsListener implements Listener {
         if (job == Job.FARMER) {
             giveFarmerMissions(cofPlayer, player);
         }
-        if (job == Job.ForgeMagician) {
+        if (job == Job.FORGEMAGICIAN) {
             giveForgeMagicianMissions(cofPlayer, player);
         }
 
@@ -115,8 +114,6 @@ public class JobsListener implements Listener {
                 100, 10, 100, MissionScope.JOB, Material.TORCH));
         cofPlayer.addMission(new EntityKillMission("Respect aux ancêtres", "Tuer le nombre de zombies requis.", player, Material.ZOMBIE_SPAWN_EGG,
                 100, 10, 50, MissionScope.JOB, EntityType.ZOMBIE, null));
-        cofPlayer.addMission(new EntityKillMission("Araknophobe", "Tuer le nombre de d'araignées requis.", player, Material.SPIDER_SPAWN_EGG,
-                100, 10, 50, MissionScope.JOB, EntityType.SPIDER));
         cofPlayer.addMission(new EntityKillMission("Boss final des internets", "Tuer un wither.", player, Material.WITHER_SKELETON_SKULL,
                 1000, 100, 1, MissionScope.JOB, EntityType.WITHER, null));
         cofPlayer.addMission(new EntityKillMission("Du calcium pour tout le monde", "Tuer le nombre de squelettes requis.", player, Material.SKELETON_SPAWN_EGG,
@@ -143,19 +140,20 @@ public class JobsListener implements Listener {
        cofPlayer.addMission(new CraftItemMission("Fabriquer des épées en diamant", "Fabriquer le nombre d'épées en diamant requis.", player, Material.DIAMOND_SWORD,
                 100, 10, 50, MissionScope.JOB, Material.DIAMOND_SWORD));
 
-        cofPlayer.addMission(new NPCMoveMission("Escorter le PNJ", "Escorter le PNJ aux coordonnées cibles.", player, Material.MINECART,
-                100, 10, 50, MissionScope.JOB, "CoordX", "CoordY", "CoordZ", "NPCName", "NPCType"));
+        cofPlayer.addMission(new MoveNPCMission("Move NPC", "", player, Material.NETHERITE_PICKAXE,
+                1200, 12, 1, MissionScope.JOB, 0, 0, 0, "NPC Name", EntityType.VILLAGER));
 
 
         Material[] itemsToCraft = {Material.GOLD_BLOCK, Material.DIAMOND_BLOCK, Material.OBSIDIAN};
         cofPlayer.addMission(new CraftItemsMission("Fabriquer des blocs", "Fabriquer les blocs spécifiés.", player, Material.GOLD_BLOCK,
                 100, 10, MissionScope.JOB, itemsToCraft));
 
-        cofPlayer.addMission(new PlayerMoveMission("Aller aux coordonnées spécifiées", "Se rendre aux coordonnées spécifiées avec une marge de 10 blocs.", player, Material.COMPASS,
-                100, 10, MissionScope.JOB, targetX, targetY, targetZ, radius));
+        cofPlayer.addMission(new PlayerMovedMission("Move around the city", "Move around the city for a certain distance", player, Material.MINECART,
+                1000, 10, 100, MissionScope.JOB, 50, 50, 50, 20));
 
-        cofPlayer.addMission(new SpawnMobListMission("Spawn the mob", "Spawn the specified mob in the world.", player, Material.COW_SPAWN_EGG,
+        cofPlayer.addMission(new SpawnMobMission("Spawn the mob", "Spawn the specified mob in the world.", player, Material.COW_SPAWN_EGG,
                 100, 10, MissionScope.JOB, EntityType.IRON_GOLEM, EntityType.WITHER, EntityType.SNOWMAN));
+
 
 
     }

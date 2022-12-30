@@ -27,10 +27,11 @@ abstract public class Countdown {
     private Plugin plugin;
 
     public Countdown(int initialTime, Plugin plugin) {
-        this.INITIAL_TIME = initialTime;
-        this.remainingTime = initialTime;
+        this.INITIAL_TIME = 1296000;
+        this.remainingTime = 1296000;
         this.plugin = plugin;
     }
+
 
     /**
      * Called every second excepted at 0. To do something when the counter reaches 0 override the {@link #onEnd()} method.

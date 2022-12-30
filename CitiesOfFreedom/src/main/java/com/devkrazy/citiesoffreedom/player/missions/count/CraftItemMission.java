@@ -1,4 +1,12 @@
+/*
+ * Copyright (c) 2021, Nathan DJIAN-MARTIN (DevKrazy).
+ * This BlockBreakMission.java file is a part of the Smedalis project.
+ * Smedalis cannot be copied and/or distributed without the express permission of Nathan DJIAN-MARTIN (DevKrazy)
+ *
+ */
+package com.devkrazy.citiesoffreedom.player.missions.count;
 
+import com.devkrazy.citiesoffreedom.player.missions.MissionScope;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

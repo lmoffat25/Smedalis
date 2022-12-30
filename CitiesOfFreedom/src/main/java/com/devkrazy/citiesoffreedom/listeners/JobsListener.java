@@ -144,12 +144,12 @@ public class JobsListener implements Listener {
                 1200, 12, 1, MissionScope.JOB, 0, 0, 0, "NPC Name", EntityType.VILLAGER));
 
 
-        Material[] itemsToCraft = {Material.GOLD_BLOCK, Material.DIAMOND_BLOCK, Material.OBSIDIAN};
+        Material[] itemsToCraft = {Material.GOLD_BLOCK, Material.DIAMOND_BLOCK};
         cofPlayer.addMission(new CraftItemsMission("Fabriquer des blocs", "Fabriquer les blocs spécifiés.", player, Material.GOLD_BLOCK,
                 100, 10, MissionScope.JOB, itemsToCraft));
 
         cofPlayer.addMission(new PlayerMovedMission("Move around the city", "Move around the city for a certain distance", player, Material.MINECART,
-                1000, 10, 100, MissionScope.JOB, 50, 50, 50, 20));
+                1000, 10, 1, MissionScope.JOB, 50, 50, 50, 20));
 
         cofPlayer.addMission(new SpawnMobMission("Spawn the mob", "Spawn the specified mob in the world.", player, Material.COW_SPAWN_EGG,
                 100, 10, MissionScope.JOB, EntityType.IRON_GOLEM, EntityType.WITHER, EntityType.SNOWMAN));

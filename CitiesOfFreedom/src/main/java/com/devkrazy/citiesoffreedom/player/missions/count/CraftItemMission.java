@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.event.inventory.InventoryAction;
 
 public class CraftItemMission extends CountMission {
 
@@ -29,11 +28,7 @@ public class CraftItemMission extends CountMission {
             CraftItemEvent craftEvent = (CraftItemEvent) event;
             ItemStack result = craftEvent.getCurrentItem();
             if (result.isSimilar(new ItemStack(itemType))) {
-                int amount = 1;
-                // Check if the player is shift-clicking to craft multiple items at once
-                if (craftEvent.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
-                    amount = result.getAmount();
-                }
+                int amount = result.getAmount();
                 this.incrementCounterOf(amount);
                 this.checkAdvancementAndReward();
             }
@@ -41,3 +36,4 @@ public class CraftItemMission extends CountMission {
     }
 
 }
+
